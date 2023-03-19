@@ -15,7 +15,7 @@ export const Card = () => {
           Photo booth fam kinfolk cold-pressed sriracha leggings jianbing
           microdosing tousled waistcoat.
         </p>
-        <div className="flex items-center flex-wrap ">
+        {/* <div className="flex items-center flex-wrap ">
           <a className="text-indigo-400 inline-flex items-center md:mb-2 lg:mb-0">
             Learn More
             <svg
@@ -60,7 +60,7 @@ export const Card = () => {
             </svg>
             6
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
-import { HomePage } from "./home/home.page";
+import { Home } from "./home";
 
 export default function Index() {
   return (
     <>
-      <HomePage />
+      <Home />
     </>
   );
 }
