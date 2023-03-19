@@ -1,4 +1,4 @@
-name: Deploy prod tmmk site on push master
+name: Deploy prod tmmk site on push main
 
 on:
   push:
