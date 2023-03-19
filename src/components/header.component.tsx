@@ -12,11 +12,9 @@ export const Header = () => {
     <>
       <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
         <a className="text-3xl font-bold leading-none" href="#">
-          <Image
+          <img
             src="https://members.tmmk.info/assets/images/flag_tmmk.jpg"
             alt=""
-            width={40}
-            height={40}
             className="h-12 w-[4rem]"
           />
         </a>
