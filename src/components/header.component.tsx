@@ -20,7 +20,7 @@ export const Header = () => {
         </a>
         <div className="lg:hidden">
           <button
-            className="navbar-burger flex items-center text-blue-600 p-3"
+            className="navbar-burger flex items-center text-black p-3"
             onClick={toggleNavBar}
           >
             <svg
@@ -86,9 +86,9 @@ export const Header = () => {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18L18 6M6 6l12 12"
                 ></path>
               </svg>
@@ -97,44 +97,44 @@ export const Header = () => {
           <div>
             <ul>
               <li className="mb-1">
-                <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                <Link
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
+                  href="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                <Link
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
+                  href="/about"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                <Link
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
+                  href="/Event"
                 >
-                  Services
-                </a>
+                  Events
+                </Link>
               </li>
               <li className="mb-1">
-                <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                <Link
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
+                  href="/pressrelease"
                 >
-                  Pricing
-                </a>
+                  Press release
+                </Link>
               </li>
               <li className="mb-1">
-                <a
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                  href="#"
+                <Link
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
+                  href="/others"
                 >
-                  Contact
-                </a>
+                  Others
+                </Link>
               </li>
             </ul>
           </div>
@@ -147,7 +147,7 @@ export const Header = () => {
                 Sign in
               </a>
               <a
-                className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl"
+                className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-black hover:bg-blue-700  rounded-xl"
                 href="#"
               >
                 Sign Up
