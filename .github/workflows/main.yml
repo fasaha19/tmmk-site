@@ -50,7 +50,7 @@ jobs:
         password: ${{ secrets.SSHPASSWORD }}
 #         port: 80
         script: |
-          cd ~/home/tmmk/public_html/tmmk-site
+          cd ../home/tmmk/public_html/tmmk-site
           git pull origin main
           git status
           npm install
