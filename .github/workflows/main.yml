@@ -29,15 +29,29 @@ jobs:
     - name: Build Project
       run: npm run build
   
-    - name: Export Static Project
-      run: npm run exp
+#     - name: Export Static Project
+#       run: npm run exp
 
-    - name: Sync Files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: ${{ env.SERVER }}
-        username: ${{ secrets.ftp_username}}
-        password: ${{ secrets.ftp_password }}
-        server-dir: /
-        local-dir: ./out/
+#     - name: Sync Files
+#       uses: SamKirkland/FTP-Deploy-Action@4.0.0
+#       with:
+#         server: ${{ env.SERVER }}
+#         username: ${{ secrets.ftp_username}}
+#         password: ${{ secrets.ftp_password }}
+#         server-dir: /
+#         local-dir: ./out/
         #dangerous-clean-slate: true
+
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSHHOST }}
+        username: ${{ secrets.SSHUSERNAME }}
+        password: ${{ secrets.SSHPASSWORD }}
+#         port: 80
+        script: |
+          cd ~/home/tmmk/public_html/tmmk-site
+          git pull origin main
+          git status
+          npm install
+          pm2 restart tmmk-site
