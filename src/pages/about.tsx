@@ -1,7 +1,17 @@
 import Head from "next/head";
 import { Layout } from "@/components/layout.component";
+import { useEffect } from "react";
+import RequestServices from "@/services/requests.services";
+import AppConfig from "@/app.config";
 
 const About = () => {
+  useEffect(() => {
+    fetchData();
+  }, [])
+  const fetchData = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.aboutUs)
+  }
   return (
     <>
       <Layout>
