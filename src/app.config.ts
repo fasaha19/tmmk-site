@@ -1,7 +1,10 @@
 const AppConfig = {
-  baseURL: "https://tmmk.info:5505/api/",
+  host: "http://tmmk.info:5505",
+  baseURL: "http://tmmk.info:5505/api/",
   routes: {
-    aboutUs: "aboutuses",
+    aboutUs: "aboutuses?populate=*",
+    blogs:
+      { allBlogs: "blogs?populate=*", blogById: 'blogs/' }
   },
 };
 
