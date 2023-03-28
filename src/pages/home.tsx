@@ -1,8 +1,21 @@
-import Head from "next/head";
+import AppConfig from "@/app.config";
 import { Card } from "@/components/card.component";
 import { Layout } from "@/components/layout.component";
+import RequestServices from "@/services/requests.services";
+import { useEffect, useState } from "react";
 
 export const Home = () => {
+  let [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const result = await fetchData();
+      setBlogs(result?.data.data);
+    })();
+  }, []);
+  const fetchData = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.blogs.allBlogs);
+  };
   return (
     <>
       <Layout>
@@ -15,10 +28,13 @@ export const Home = () => {
 
         {/* blogs */}
         <section className="grid grid-auto-fit-xs gap-4 mt-16">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {blogs.map((item: any) => (
+            <Card
+              blogData={item.attributes}
+              blogId={item.attributes?.blog?.id}
+              key={item.id}
+            />
+          ))}
         </section>
 
         {/* video */}

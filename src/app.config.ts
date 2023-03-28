@@ -4,7 +4,7 @@ const AppConfig = {
   routes: {
     aboutUs: "aboutuses?populate=*",
     blogs:
-      { allBlogs: "blogs?populate=*", blogById: 'blogs/' }
+      { allBlogs: "blogs?populate=*&populate=blog.image", blogById: 'blogs/' }
   },
 };
 
