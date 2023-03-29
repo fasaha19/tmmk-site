@@ -8,7 +8,8 @@ const AppConfig: any = {
     featuredVideo: "home-featured-videos?populate=*",
     pressRelease: {
       allBlogs: "home-press-releases?populate=*&populate=pressRelease.image", blogById: "home-press-releases/"
-    }
+    },
+    announcements: "home-announcements"
 
   },
 };

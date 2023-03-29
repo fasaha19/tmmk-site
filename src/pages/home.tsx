@@ -3,11 +3,15 @@ import { Card } from "@/components/card.component";
 import { Layout } from "@/components/layout.component";
 import RequestServices from "@/services/requests.services";
 import { useEffect, useState } from "react";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
 
 export const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [featuredVideo, setFeaturedVideo] = useState([]);
   const [pressRelease, setPressRelease] = useState([]);
+  const [announcements, setAnnouncements] = useState<any>();
+  const markdown = `Just a link: https://reactjs.com.`;
 
   const fetchData = async () => {
     const service = new RequestServices();
@@ -21,6 +25,10 @@ export const Home = () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.pressRelease.allBlogs);
   };
+  const fetchAnnouncements = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.announcements);
+  };
 
   useEffect(() => {
     (async () => {
@@ -32,7 +40,10 @@ export const Home = () => {
 
       const pressReleaseData = await fetchPressRelease();
       setPressRelease(pressReleaseData?.data.data);
-      console.log(pressRelease);
+
+      // const announcementsData = await fetchAnnouncements();
+      // setAnnouncements(announcementsData?.data.data);
+      // console.log(announcements);
     })();
   }, []);
 
@@ -92,48 +103,15 @@ export const Home = () => {
             <div className="flex flex-col">
               <h1>Announcements</h1>
               <div className="flex flex-col border border-1 p-6">
-                <ul>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                  <li className="py-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus, neque?
-                  </li>
-                </ul>
+                {/* {announcements?.data?.map((item: any) => ( */}
+                {/* <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  children={
+                    announcements?.data?.[0]["attributes"]["announcementMsg"]
+                  }
+                  key={announcements?.data[0]?.id}
+                /> */}
+                {/* ))} */}
               </div>
             </div>
           </div>
