@@ -1,7 +1,23 @@
+import AppConfig from "@/app.config";
 import { Card } from "@/components/card.component";
 import { Layout } from "@/components/layout.component";
+import RequestServices from "@/services/requests.services";
+import { useEffect, useState } from "react";
 
 const Event = () => {
+  const [event, setEvent] = useState<any>();
+
+  const fetchEvent = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.event);
+  };
+
+  useEffect(() => {
+    (async () => {
+      const result = await fetchEvent();
+      setEvent(result?.data.data);
+    })();
+  }, []);
   return (
     <>
       <Layout>
@@ -9,9 +25,14 @@ const Event = () => {
         <section className="mt-16">
           <h1>TMMK Events</h1>
           <div className="grid grid-auto-fit-xs gap-16">
-            {/* <Card />
-            <Card />
-            <Card /> */}
+            {event?.map((item: any) => (
+              <Card
+                pressRelease={item.attributes}
+                blogId={item.id}
+                key={item.id}
+                blogType={"pressRelease"}
+              />
+            ))}
           </div>
         </section>
 

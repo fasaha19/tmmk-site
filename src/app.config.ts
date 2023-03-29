@@ -9,9 +9,15 @@ const AppConfig: any = {
     pressRelease: {
       allBlogs: "home-press-releases?populate=*&populate=pressRelease.image", blogById: "home-press-releases/"
     },
-    announcements: "home-announcements"
+    announcements: "home-announcements",
+    event: "home-press-releases?populate=*&populate=pressRelease.image&sort=id:ASC&filters[$and][0][id][$gte]=2",
 
   },
 };
 
 export default AppConfig;
+
+
+
+// -----------Filter----------
+// &sort=id:ASC&filters[$and][0][id][$gte]=2

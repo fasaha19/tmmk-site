@@ -4,6 +4,8 @@ import axios from "axios";
 export default class RequestServices {
   baseUrl = AppConfig.baseURL;
   getRequest = async (url: string) => {
+    console.log(url);
+
     try {
       const response = await axios.get(`${this.baseUrl + url}`);
       return response;
