@@ -3,9 +3,9 @@ import RequestServices from "@/services/requests.services";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function CommentPage() {
+export default function BlogDetail() {
   const router = useRouter();
-  let id: any;
+  let { id, blogType }: any = router.query;
   const hostUrl = AppConfig.host;
 
   let [blogData, setBlogData] = useState<any>({});
@@ -13,14 +13,17 @@ export default function CommentPage() {
     (async () => {
       // const comment = router.query.comment as string;
       id = router.query.id as string;
+      blogType = router.query.blogType as string;
       const result = await fetchData();
       setBlogData(result?.data.data);
     })();
-  }, []);
+  }, [router]);
   const fetchData = async () => {
+    console.log(AppConfig.routes?.[blogType]?.blogById);
+
     const service = new RequestServices();
     return await service.getRequest(
-      `${AppConfig.routes.blogs.blogById}${id}?populate=*&populate=blog.image`
+      `${AppConfig.routes?.[blogType]?.blogById}${id}?populate=*&populate=${blogType}.image`
     );
   };
   return (
@@ -33,9 +36,10 @@ export default function CommentPage() {
                 alt="content"
                 className="object-cover object-center h-full w-full"
                 src={`${
-                  blogData?.attributes?.blog?.image?.data?.attributes?.url
+                  blogData?.attributes?.[blogType]?.image?.data?.attributes?.url
                     ? hostUrl +
-                      blogData?.attributes?.blog?.image?.data?.attributes?.url
+                      blogData?.attributes?.[blogType]?.image?.data?.attributes
+                        ?.url
                     : "https://dummyimage.com/1200x500"
                 }
                `}
@@ -59,7 +63,7 @@ export default function CommentPage() {
                 </div>
                 <div className="flex flex-col items-center text-center justify-center">
                   <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">
-                    {blogData?.attributes?.blog?.author}
+                    {blogData?.attributes?.[blogType]?.author}
                   </h2>
                   <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                   <p className="text-base">
@@ -69,9 +73,9 @@ export default function CommentPage() {
                 </div>
               </div>
               <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-                <h1> {blogData?.attributes?.blog?.title}</h1>
+                <h1> {blogData?.attributes?.[blogType]?.title}</h1>
                 <p className="leading-relaxed text-lg mb-4">
-                  {blogData?.attributes?.blog?.description}
+                  {blogData?.attributes?.[blogType]?.description}
                 </p>
                 {/* <a className="text-indigo-500 inline-flex items-center">
                   Learn More

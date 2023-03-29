@@ -4,17 +4,19 @@ import Link from "next/link";
 export const Card = (props: any) => {
   const hostUrl = AppConfig.host;
   const id = props.blogId;
-  const blogData = props.blogData;
+  const blogType = props.blogType;
+  const blogData = props[blogType];
+
   return (
-    <Link href={`blog/${id}`}>
+    <Link href={`blog/${blogType}/${id}`}>
       <div
         className={`h-full border-2 shadow-lg rounded-lg overflow-hidden ${id}`}
       >
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center"
           src={
-            blogData?.blog?.image
-              ? hostUrl + blogData.blog.image.data.attributes.url
+            blogData[blogType]?.image
+              ? hostUrl + blogData[blogType].image.data.attributes.url
               : "https://dummyimage.com/720x400"
           }
           alt="blog"
@@ -22,9 +24,11 @@ export const Card = (props: any) => {
         <div className="p-6">
           {/* <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">CATEGORY</h2> */}
           <h1 className="title-font text-lg font-medium text-black mb-3">
-            {blogData?.blog?.title} {id}
+            {blogData[blogType]["title"]} {id}
           </h1>
-          <p className="leading-relaxed mb-3">{blogData?.blog?.description}</p>
+          <p className="leading-relaxed mb-3">
+            {blogData[blogType].description}
+          </p>
           {/* <div className="flex items-center flex-wrap ">
           <a className="text-indigo-400 inline-flex items-center md:mb-2 lg:mb-0">
             Learn More

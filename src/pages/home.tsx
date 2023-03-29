@@ -5,34 +5,55 @@ import RequestServices from "@/services/requests.services";
 import { useEffect, useState } from "react";
 
 export const Home = () => {
-  let [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const [featuredVideo, setFeaturedVideo] = useState([]);
+  const [pressRelease, setPressRelease] = useState([]);
+
+  const fetchData = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.blog.allBlogs);
+  };
+  const fetchFeaturedVideo = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.featuredVideo);
+  };
+  const fetchPressRelease = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.pressRelease.allBlogs);
+  };
+
   useEffect(() => {
     (async () => {
       const result = await fetchData();
       setBlogs(result?.data.data);
+
+      const featuredVideos = await fetchFeaturedVideo();
+      setFeaturedVideo(featuredVideos?.data.data);
+
+      const pressReleaseData = await fetchPressRelease();
+      setPressRelease(pressReleaseData?.data.data);
+      console.log(pressRelease);
     })();
   }, []);
-  const fetchData = async () => {
-    const service = new RequestServices();
-    return await service.getRequest(AppConfig.routes.blogs.allBlogs);
-  };
+
   return (
     <>
       <Layout>
         <section>
-          <video height="240" controls className="mx-auto w-full h-[35rem]">
-            <source src="movie.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <iframe
+            className="w-full h-[28rem]"
+            src="https://www.youtube.com/embed/QPKwJ-1YABc"
+          ></iframe>
         </section>
 
         {/* blogs */}
         <section className="grid grid-auto-fit-xs gap-4 mt-16">
           {blogs.map((item: any) => (
             <Card
-              blogData={item.attributes}
+              blog={item.attributes}
               blogId={item.attributes?.blog?.id}
               key={item.id}
+              blogType={"blog"}
             />
           ))}
         </section>
@@ -40,10 +61,15 @@ export const Home = () => {
         {/* video */}
         <section className="mt-16">
           <h1>Featured videos</h1>
-          <div className="grid grid-auto-fit-xs gap-16">
-            <Card />
-            <Card />
-            <Card />
+          <div className="grid grid-auto-fit-xs gap-4">
+            {featuredVideo.map((item: any) => (
+              <div key={item?.id}>
+                <iframe
+                  className="w-full"
+                  src={item?.attributes?.featuredYoutubeLink}
+                ></iframe>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -53,10 +79,14 @@ export const Home = () => {
             <div className="flex flex-col">
               <h1>Press Release</h1>
               <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {pressRelease?.map((item: any) => (
+                  <Card
+                    pressRelease={item.attributes}
+                    blogId={item.id}
+                    key={item.id}
+                    blogType={"pressRelease"}
+                  />
+                ))}
               </div>
             </div>
             <div className="flex flex-col">
