@@ -10,7 +10,7 @@ export const Footer = () => {
               width={25}
               alt=""
             />
-            <span className="ml-3 text-xl">Tmmk Hq</span>
+            <span className="ml-3 text-xl">Tmmk</span>
           </a>
           <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
             © TMMK —
@@ -27,8 +27,8 @@ export const Footer = () => {
             <a className="text-gray-500">
               <svg
                 fill="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 stroke-width="2"
                 className="w-5 h-5"
                 viewBox="0 0 24 24"
@@ -39,8 +39,8 @@ export const Footer = () => {
             <a className="ml-3 text-gray-500">
               <svg
                 fill="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 stroke-width="2"
                 className="w-5 h-5"
                 viewBox="0 0 24 24"

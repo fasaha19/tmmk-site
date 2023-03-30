@@ -7,7 +7,6 @@ on:
 
 jobs:
   web-deploy:
-
     name: Deploy tmmk site
     runs-on: ubuntu-latest
 
@@ -15,43 +14,44 @@ jobs:
       SERVER: tmmk.info
 
     steps:
-    - name: Get latest code
-      uses: actions/checkout@v2.3.2
+      - name: Get latest code
+        uses: actions/checkout@v2.3.2
 
-    - name: Use Node.js 16 LTS
-      uses: actions/setup-node@v1
-      with:
-        node-version: '16.x'
+      - name: Use Node.js 16 LTS
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
 
-    - name: Install NPM Modules
-      run: npm install
+      - name: Install NPM Modules
+        run: npm install
 
-    - name: Build Project
-      run: npm run build
-  
-#     - name: Export Static Project
-#       run: npm run exp
+      - name: Build Project
+        run: npm run build
 
-#     - name: Sync Files
-#       uses: SamKirkland/FTP-Deploy-Action@4.0.0
-#       with:
-#         server: ${{ env.SERVER }}
-#         username: ${{ secrets.ftp_username}}
-#         password: ${{ secrets.ftp_password }}
-#         server-dir: /
-#         local-dir: ./out/
-        #dangerous-clean-slate: true
+      #     - name: Export Static Project
+      #       run: npm run exp
 
-    - name: Deploy using ssh
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSHHOST }}
-        username: ${{ secrets.SSHUSERNAME }}
-        password: ${{ secrets.SSHPASSWORD }}
-#         port: 80
-        script: |
-          cd ../home/tmmk/public_html/tmmk-site
-          git pull origin main
-          git status
-          npm install
-          pm2 restart tmmk-site
+      #     - name: Sync Files
+      #       uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      #       with:
+      #         server: ${{ env.SERVER }}
+      #         username: ${{ secrets.ftp_username}}
+      #         password: ${{ secrets.ftp_password }}
+      #         server-dir: /
+      #         local-dir: ./out/
+      #dangerous-clean-slate: true
+
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSHHOST }}
+          username: ${{ secrets.SSHUSERNAME }}
+          password: ${{ secrets.SSHPASSWORD }}
+          #         port: 80
+          script: |
+            cd ../home/tmmk/public_html/tmmk-site
+            git pull origin main
+            git status
+            npm install
+            npm run build
+            pm2 restart tmmk-site
