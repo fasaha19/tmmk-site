@@ -23,9 +23,8 @@ const About = () => {
         {aboutUs.map((item: any, index: number) => (
           <section className="grid grid-auto-fit mt-8 gap-6" key={item?.id}>
             <img
-              className={`object-cover shadow-md object-center rounded md:order-${
-                index % 2 == 0 ? "2" : "0"
-              }`}
+              className={`object-cover shadow-md object-center rounded 
+              md:order-${index % 2 == 0 ? "1" : "0"}`}
               alt="hero"
               src={`${
                 item.attributes?.image.data.attributes.url

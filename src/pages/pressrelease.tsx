@@ -6,17 +6,31 @@ import { useEffect, useState } from "react";
 
 const PressRelease = () => {
   const [release, setRelease] = useState<any>();
+  const [banner, setBanner] = useState<any>();
+  const [pdf, setPdf] = useState<any>();
+  const hostUrl = AppConfig.host;
 
   const fetchEvent = async () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.pressRelease.allBlogs);
   };
 
+  const fetchEventMedia = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.pressMedia);
+  };
+
   useEffect(() => {
     (async () => {
       const result = await fetchEvent();
       setRelease(result?.data.data);
-      console.log(release);
+      const media = await fetchEventMedia();
+      setBanner(
+        media?.data.data.attributes.bannerImage.data.attributes.formats.medium
+          .url
+      );
+      setPdf(media?.data.data.attributes.pdf.data.attributes.url);
+      console.log(pdf);
     })();
   }, []);
 
@@ -26,7 +40,7 @@ const PressRelease = () => {
         <img
           className="object-cover shadow-lg object-center rounded w-full h-[25rem]"
           alt="hero"
-          src="https://dummyimage.com/720x600"
+          src={banner ? hostUrl + banner : "https://dummyimage.com/720x600"}
         />
       </section>
       <section className="mt-16 ">
@@ -77,10 +91,14 @@ const PressRelease = () => {
             </div>
           </section>
           <section className="bg-gray-200 h-full">
-            <iframe
-              src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-              className="grid place-content-center h-full w-full"
-            ></iframe>
+            {pdf ? (
+              <iframe
+                src={hostUrl + pdf}
+                className="grid place-content-center h-full w-full"
+              ></iframe>
+            ) : (
+              "No Release yet"
+            )}
           </section>
         </div>
       </section>

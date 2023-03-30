@@ -11,6 +11,8 @@ const AppConfig: any = {
     },
     announcements: "home-announcements",
     event: "home-press-releases?populate=*&populate=pressRelease.image&sort=id:ASC&filters[$and][0][id][$gte]=2",
+    eventMedia: "event-media?populate=*",
+    pressMedia: "event?populate=*", // /event = pressMeida route!
 
   },
 };

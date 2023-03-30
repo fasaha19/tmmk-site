@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer.component";
 import { Header } from "@/components/header.component";
 import Head from "next/head";
 
@@ -15,6 +16,7 @@ export const Layout = ({ children }: any) => {
         />
       </Head>
       <div className="container mx-auto p-4">{children}</div>
+      <Footer />
     </>
   );
 };

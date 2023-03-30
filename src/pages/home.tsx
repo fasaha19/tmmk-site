@@ -11,7 +11,6 @@ export const Home = () => {
   const [featuredVideo, setFeaturedVideo] = useState([]);
   const [pressRelease, setPressRelease] = useState([]);
   const [announcements, setAnnouncements] = useState<any>();
-  const markdown = `Just a link: https://reactjs.com.`;
 
   const fetchData = async () => {
     const service = new RequestServices();
@@ -41,9 +40,8 @@ export const Home = () => {
       const pressReleaseData = await fetchPressRelease();
       setPressRelease(pressReleaseData?.data.data);
 
-      // const announcementsData = await fetchAnnouncements();
-      // setAnnouncements(announcementsData?.data.data);
-      // console.log(announcements);
+      const announcementsData = await fetchAnnouncements();
+      setAnnouncements(announcementsData?.data.data);
     })();
   }, []);
 
@@ -103,15 +101,11 @@ export const Home = () => {
             <div className="flex flex-col">
               <h1>Announcements</h1>
               <div className="flex flex-col border border-1 p-6">
-                {/* {announcements?.data?.map((item: any) => ( */}
-                {/* <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  children={
-                    announcements?.data?.[0]["attributes"]["announcementMsg"]
-                  }
-                  key={announcements?.data[0]?.id}
-                /> */}
-                {/* ))} */}
+                {announcements?.map((item: any) => (
+                  <ReactMarkdown key={item.id}>
+                    {item.attributes.announcementMsg}
+                  </ReactMarkdown>
+                ))}
               </div>
             </div>
           </div>

@@ -6,16 +6,25 @@ import { useEffect, useState } from "react";
 
 const Event = () => {
   const [event, setEvent] = useState<any>();
+  const [eventMedia, setEventMedia] = useState<any>();
 
   const fetchEvent = async () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.event);
+  };
+  const fetchEventMedia = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.eventMedia);
   };
 
   useEffect(() => {
     (async () => {
       const result = await fetchEvent();
       setEvent(result?.data.data);
+      const media = await fetchEventMedia();
+      setEventMedia(
+        media?.data.data.attributes.bannerImage.data.attributes.url
+      );
     })();
   }, []);
   return (
@@ -40,7 +49,7 @@ const Event = () => {
           <img
             className="object-cover shadow-md object-center rounded w-full h-[22rem]"
             alt="hero"
-            src="https://dummyimage.com/720x600"
+            src={AppConfig.host + eventMedia}
           />
         </section>
 
