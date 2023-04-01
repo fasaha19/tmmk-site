@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layout.component";
 import { useEffect, useState } from "react";
 import RequestServices from "@/services/requests.services";
-import AppConfig from "@/app.config";
+import { AppConfig } from "@/app.config";
 
 const About = () => {
   let [aboutUs, setAboutUs] = useState([]);

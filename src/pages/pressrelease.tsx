@@ -1,4 +1,4 @@
-import AppConfig from "@/app.config";
+import { AppConfig } from "@/app.config";
 import { Layout } from "@/components/layout.component";
 import RequestServices from "@/services/requests.services";
 import Link from "next/link";

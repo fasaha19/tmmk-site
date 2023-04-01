@@ -1,4 +1,4 @@
-import AppConfig from "@/app.config";
+import { AppConfig } from "@/app.config";
 import Link from "next/link";
 
 export const Card = (props: any) => {
