@@ -26,7 +26,7 @@ export const Card = (props: any) => {
           <h1 className="title-font text-lg font-medium text-black mb-3">
             {blogData[blogType]["title"]} {id}
           </h1>
-          <p className="leading-relaxed mb-3">
+          <p className="leading-relaxed mb-3 line-clamp-4">
             {blogData[blogType].description}
           </p>
           {/* <div className="flex items-center flex-wrap ">
