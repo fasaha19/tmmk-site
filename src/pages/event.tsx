@@ -1,4 +1,4 @@
-import AppConfig from "@/app.config";
+import { AppConfig } from "@/app.config";
 import { Card } from "@/components/card.component";
 import { Layout } from "@/components/layout.component";
 import RequestServices from "@/services/requests.services";

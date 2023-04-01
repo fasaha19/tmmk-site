@@ -13,11 +13,11 @@ const AppConfig: any = {
     event: "home-press-releases?populate=*&populate=pressRelease.image&sort=id:ASC&filters[$and][0][id][$gte]=2",
     eventMedia: "event-media?populate=*",
     pressMedia: "event?populate=*", // /event = pressMeida route!
-
   },
+  siteUrl: "http://tmmk.info:3000"
 };
 
-export default AppConfig;
+export { AppConfig, };
 
 
 

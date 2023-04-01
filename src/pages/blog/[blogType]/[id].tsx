@@ -1,12 +1,23 @@
-import AppConfig from "@/app.config";
+import { AppConfig } from "@/app.config";
 import RequestServices from "@/services/requests.services";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
+import {
+  FaFacebookSquare,
+  FaTwitterSquare,
+  FaWhatsappSquare,
+} from "react-icons/fa";
 
 export default function BlogDetail() {
   const router = useRouter();
   let { id, blogType }: any = router.query;
   const hostUrl = AppConfig.host;
+  const shareUrl = AppConfig.siteUrl + router.asPath;
 
   let [blogData, setBlogData] = useState<any>({});
   useEffect(() => {
@@ -77,20 +88,31 @@ export default function BlogDetail() {
                 <p className="leading-relaxed text-lg mb-4">
                   {blogData?.attributes?.[blogType]?.description}
                 </p>
-                {/* <a className="text-indigo-500 inline-flex items-center">
-                  Learn More
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-4 h-4 ml-2"
-                    viewBox="0 0 24 24"
+                <div className="h-[1.5px] bg-[#999999]"></div>
+                <span className="mt-4">Share</span>
+                <div className="flex justify-start">
+                  <FacebookShareButton
+                    url={shareUrl}
+                    quote={"Dummy text!"}
+                    hashtag="#muo"
                   >
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                  </svg>
-                </a> */}
+                    <FaFacebookSquare
+                      className="p-1 pl-0"
+                      size={40}
+                      color="navy"
+                    />
+                  </FacebookShareButton>
+                  <WhatsappShareButton url={shareUrl}>
+                    <FaWhatsappSquare className="p-1" size={40} color="green" />
+                  </WhatsappShareButton>
+                  <TwitterShareButton title="helo" url={shareUrl}>
+                    <FaTwitterSquare
+                      className="p-1"
+                      size={40}
+                      color="skyblue"
+                    />
+                  </TwitterShareButton>
+                </div>
               </div>
             </div>
           </div>
