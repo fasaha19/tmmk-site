@@ -12,6 +12,7 @@ import {
   FaTwitterSquare,
   FaWhatsappSquare,
 } from "react-icons/fa";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 export default function BlogDetail() {
   const router = useRouter();
@@ -27,11 +28,10 @@ export default function BlogDetail() {
       blogType = router.query.blogType as string;
       const result = await fetchData();
       setBlogData(result?.data.data);
+      // console.log(blogData.attributes?.pressRelease?.body);
     })();
-  }, [router]);
+  }, [router, blogData]);
   const fetchData = async () => {
-    console.log(AppConfig.routes?.[blogType]?.blogById);
-
     const service = new RequestServices();
     return await service.getRequest(
       `${AppConfig.routes?.[blogType]?.blogById}${id}?populate=*&populate=${blogType}.image`
@@ -88,6 +88,13 @@ export default function BlogDetail() {
                 <p className="leading-relaxed text-lg mb-4">
                   {blogData?.attributes?.[blogType]?.description}
                 </p>
+                <ReactMarkdown
+                  transformImageUri={(src) => {
+                    return AppConfig.host + src;
+                  }}
+                >
+                  {blogData?.attributes?.pressRelease?.body}
+                </ReactMarkdown>
                 <div className="h-[1.5px] bg-[#999999]"></div>
                 <span className="mt-4">Share</span>
                 <div className="flex justify-start">
