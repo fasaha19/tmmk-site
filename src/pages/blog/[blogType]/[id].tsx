@@ -143,7 +143,6 @@ export async function getStaticPaths() {
   const routes: any[] = resp?.data.data;
 
   const result = routes.map((item) => {
-    console.log(item);
     return { params: { id: item.id.toString(), blogType: "blog" } };
   });
 

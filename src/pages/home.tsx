@@ -4,7 +4,6 @@ import { Layout } from "@/components/layout.component";
 import RequestServices from "@/services/requests.services";
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import remarkGfm from "remark-gfm";
 
 export const Home = () => {
   const [blogs, setBlogs] = useState([]);
@@ -60,9 +59,9 @@ export const Home = () => {
           {blogs.map((item: any) => (
             <Card
               blog={item.attributes}
-              blogId={item.attributes?.blog?.id}
+              blogId={item.id}
               key={item.id}
-              blogType={"blog"}
+              blogType={item.attributes?.blog?.blogType}
             />
           ))}
         </section>

@@ -15,8 +15,8 @@ export const Card = (props: any) => {
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center"
           src={
-            blogData[blogType]?.image
-              ? hostUrl + blogData[blogType].image.data.attributes.url
+            blogData?.[blogType]?.image
+              ? hostUrl + blogData?.[blogType].image.data.attributes.url
               : "https://dummyimage.com/720x400"
           }
           alt="blog"
@@ -24,10 +24,10 @@ export const Card = (props: any) => {
         <div className="p-6">
           {/* <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">CATEGORY</h2> */}
           <h1 className="title-font text-lg font-medium text-black mb-3">
-            {blogData[blogType]["title"]} {id}
+            {blogData?.[blogType]?.["title"]} {id}
           </h1>
           <p className="leading-relaxed mb-3 line-clamp-4">
-            {blogData[blogType].description}
+            {blogData?.[blogType]?.description}
           </p>
           {/* <div className="flex items-center flex-wrap ">
           <a className="text-indigo-400 inline-flex items-center md:mb-2 lg:mb-0">
