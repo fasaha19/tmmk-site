@@ -10,3 +10,7 @@
 * {
   font-family: $font-family-name, $font-generic-name;
 }
+
+html {
+  scroll-behavior: smooth;
+}
