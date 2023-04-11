@@ -12,7 +12,7 @@ const PressRelease = () => {
 
   const fetchEvent = async () => {
     const service = new RequestServices();
-    return await service.getRequest(AppConfig.routes.pressRelease.allBlogs);
+    return await service.getRequest(AppConfig.routes.blog.allBlogs);
   };
 
   const fetchEventMedia = async () => {
@@ -24,6 +24,8 @@ const PressRelease = () => {
     (async () => {
       const result = await fetchEvent();
       setRelease(result?.data.data);
+      console.log(release);
+
       const media = await fetchEventMedia();
       setBanner(
         media?.data.data.attributes.bannerImage.data.attributes.formats.medium
@@ -61,13 +63,13 @@ const PressRelease = () => {
                     </div>
                     <div className="md:flex-grow">
                       <h2 className="text-2xl font-medium text-black title-font mb-2">
-                        {item.attributes.pressRelease.title}
+                        {item.attributes.title}
                       </h2>
                       <p className="leading-relaxed">
-                        {item.attributes.pressRelease.description}
+                        {item.attributes.description}
                       </p>
                       <Link
-                        href={`blog/pressRelease/${item.id}`}
+                        href={`blog/${item.id}`}
                         className="text-indigo-400 inline-flex items-center mt-4"
                       >
                         see more

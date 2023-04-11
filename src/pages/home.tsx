@@ -58,10 +58,10 @@ export const Home = () => {
         <section className="grid grid-auto-fit-xs gap-4 mt-16">
           {blogs.map((item: any) => (
             <Card
-              blog={item.attributes}
+              blogData={item.attributes}
               blogId={item.id}
               key={item.id}
-              blogType={item.attributes?.blog?.blogType}
+              blogType={item.attributes?.blogType}
             />
           ))}
         </section>
@@ -89,10 +89,10 @@ export const Home = () => {
               <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4">
                 {pressRelease?.map((item: any) => (
                   <Card
-                    pressRelease={item.attributes}
+                    blogData={item.attributes}
                     blogId={item.id}
                     key={item.id}
-                    blogType={"pressRelease"}
+                    blogType={item.attributes?.blogType}
                   />
                 ))}
               </div>

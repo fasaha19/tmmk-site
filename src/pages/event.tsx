@@ -36,10 +36,10 @@ const Event = () => {
           <div className="grid grid-auto-fit-xs gap-16">
             {event?.map((item: any) => (
               <Card
-                pressRelease={item.attributes}
+                blogData={item.attributes}
                 blogId={item.id}
                 key={item.id}
-                blogType={"pressRelease"}
+                blogType={item.attributes?.blogType}
               />
             ))}
           </div>

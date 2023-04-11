@@ -33,7 +33,7 @@ export default function BlogDetail(props: any) {
   // const fetchData = async () => {
   //   const service = new RequestServices();
   //   return await service.getRequest(
-  //     `${AppConfig.routes?.[blogType]?.blogById}${id}?populate=*&populate=${blogType}.image`
+  //     `${AppConfig.routes?.blog?.blogById}${id}?populate=*&populate=${blogType}.image`
   //   );
   // };
   return (
@@ -47,11 +47,9 @@ export default function BlogDetail(props: any) {
                   alt="content"
                   className="object-cover object-center h-full w-full"
                   src={`${
-                    pageData?.attributes?.[blogType]?.image?.data?.attributes
-                      ?.url
+                    pageData?.attributes?.image?.data?.attributes?.url
                       ? hostUrl +
-                        pageData?.attributes?.[blogType]?.image?.data
-                          ?.attributes?.url
+                        pageData?.attributes?.image?.data?.attributes?.url
                       : "https://dummyimage.com/1200x500"
                   }
                `}
@@ -75,7 +73,7 @@ export default function BlogDetail(props: any) {
                   </div>
                   <div className="flex flex-col items-center text-center justify-center">
                     <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">
-                      {pageData?.attributes?.[blogType]?.author}
+                      {pageData?.attributes?.author}
                     </h2>
                     <div className="w-12 h-1 bg-black-500 rounded mt-2 mb-4"></div>
                     <p className="text-base">
@@ -86,9 +84,9 @@ export default function BlogDetail(props: any) {
                   </div>
                 </div>
                 <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-                  <h1> {pageData?.attributes?.[blogType]?.title}</h1>
+                  <h1> {pageData?.attributes?.title}</h1>
                   <p className="leading-relaxed text-lg mb-4">
-                    {pageData?.attributes?.[blogType]?.description}
+                    {pageData?.attributes?.description}
                   </p>
                   <ReactMarkdown
                     transformImageUri={(src) => {
@@ -138,12 +136,17 @@ export default function BlogDetail(props: any) {
 
 export async function getStaticPaths() {
   const service = new RequestServices();
-  const resp = await service.getRequest(AppConfig.routes.blog.allBlogs);
+  const resp = await service.getRequest(AppConfig.ssgFetchBlogUrl);
 
   const routes: any[] = resp?.data.data;
 
   const result = routes.map((item) => {
-    return { params: { id: item.id.toString(), blogType: "blog" } };
+    return {
+      params: {
+        id: item.id.toString(),
+        blogType: item?.attributes?.blogType,
+      },
+    };
   });
 
   return {
@@ -157,9 +160,7 @@ export async function getStaticProps(context: any) {
 
   const service = new RequestServices();
   const response = await service.getRequest(
-    `${AppConfig.routes?.[params.blogType]?.blogById}${
-      params.id
-    }?populate=*&populate=${params.blogType}.image`
+    `${AppConfig.routes.blog?.blogById}${params.id}?populate=*`
   );
 
   return {

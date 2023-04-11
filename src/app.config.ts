@@ -4,16 +4,17 @@ const AppConfig: any = {
   routes: {
     aboutUs: "aboutuses?populate=*",
     blog:
-      { allBlogs: "blogs?populate=*&populate=blog.image", blogById: 'blogs/' },
+      { allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=blog", blogById: 'blogs/' },
     featuredVideo: "home-featured-videos?populate=*",
     pressRelease: {
-      allBlogs: "home-press-releases?populate=*&populate=pressRelease.image", blogById: "home-press-releases/"
+      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease", blogById: "blogs/"
     },
     announcements: "home-announcements",
-    event: "home-press-releases?populate=*&populate=pressRelease.image&sort=id:ASC&filters[$and][0][id][$gte]=2",
+    event: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&sort=id:ASC&filters[$and][0][id][$gte]=2",
     eventMedia: "event-media?populate=*",
     pressMedia: "event?populate=*", // /event = pressMeida route!
   },
+  ssgFetchBlogUrl: "blogs?populate=*",
   siteUrl: "http://tmmk.info:3000"
 };
 

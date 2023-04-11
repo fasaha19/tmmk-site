@@ -10,13 +10,14 @@ export const Header = () => {
   return (
     <>
       <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
-        <a className="text-3xl font-bold leading-none" href="#">
+        <Link href={"/"} className="text-3xl font-bold leading-none">
           <img
             src="https://members.tmmk.info/assets/images/flag_tmmk.jpg"
             alt=""
             className="h-12 w-[4rem]"
           />
-        </a>
+        </Link>
+
         <div className="lg:hidden">
           <button
             className="navbar-burger flex items-center text-black p-3"
