@@ -154,6 +154,24 @@ export const Header = () => {
                   Others
                 </Link>
               </li>
+              <li className="mb-1">
+                <Link
+                  target={"_blank"}
+                  href={"https://members.tmmk.info/"}
+                  className="block p-4  text-sm bg-black hover:bg-[#383838] text-white font-bold py-2 px-4 rounded"
+                >
+                  Become a member
+                </Link>
+              </li>
+              <li>
+                <Link
+                  target={"_blank"}
+                  href={"https://www.tmmk.info/donation/"}
+                  className="text-sm  block p-4  text-black border hover:bg-black hover:text-white font-bold py-2 px-4 rounded"
+                >
+                  Donate
+                </Link>
+              </li>
             </ul>
           </div>
           {/* <div className="mt-auto">
