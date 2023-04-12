@@ -58,31 +58,36 @@ export const Home = () => {
 
         {/* blogs */}
         <section className="grid grid-auto-fit-xs gap-4 mt-16">
-          {
-            blogs.
-            blogs.map((item: any) => (
-            <Card
-              blogData={item.attributes}
-              blogId={item.id}
-              key={item.id}
-              blogType={item.attributes?.blogType}
-            />
-            ))
-          }
+          {blogs.length > 0
+            ? blogs.map((item: any) => (
+                <Card
+                  blogData={item.attributes}
+                  blogId={item.id}
+                  key={item.id}
+                  blogType={item.attributes?.blogType}
+                />
+              ))
+            : [1, 2, 3].map((i) => (
+                <div className="animate h-[20rem]" key={i}></div>
+              ))}
         </section>
 
         {/* video */}
         <section className="mt-16">
           <h1>Featured videos</h1>
           <div className="grid grid-auto-fit-xs gap-4">
-            {featuredVideo.map((item: any) => (
-              <div key={item?.id}>
-                <iframe
-                  className="w-full"
-                  src={item?.attributes?.featuredYoutubeLink}
-                ></iframe>
-              </div>
-            ))}
+            {featuredVideo.length > 0
+              ? featuredVideo.map((item: any) => (
+                  <div key={item?.id}>
+                    <iframe
+                      className="w-full"
+                      src={item?.attributes?.featuredYoutubeLink}
+                    ></iframe>
+                  </div>
+                ))
+              : [1, 2, 3].map((i) => (
+                  <div className="animate h-[10rem]" key={i}></div>
+                ))}
           </div>
         </section>
 
@@ -92,14 +97,18 @@ export const Home = () => {
             <div className="flex flex-col">
               <h1>Press Release</h1>
               <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4">
-                {pressRelease?.map((item: any) => (
-                  <Card
-                    blogData={item.attributes}
-                    blogId={item.id}
-                    key={item.id}
-                    blogType={item.attributes?.blogType}
-                  />
-                ))}
+                {pressRelease.length > 0
+                  ? pressRelease?.map((item: any) => (
+                      <Card
+                        blogData={item.attributes}
+                        blogId={item.id}
+                        key={item.id}
+                        blogType={item.attributes?.blogType}
+                      />
+                    ))
+                  : [1, 2, 3, 4].map((i) => (
+                      <div className="animate h-[20rem]" key={i}></div>
+                    ))}
               </div>
             </div>
             <div className="flex flex-col">

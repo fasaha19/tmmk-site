@@ -64,7 +64,7 @@ export const Header = () => {
             <Link
               target={"_blank"}
               href={"https://members.tmmk.info/"}
-              className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="text-sm bg-black hover:bg-[#383838] text-white font-bold py-2 px-4 rounded"
             >
               Become a member
             </Link>
@@ -73,7 +73,7 @@ export const Header = () => {
             <Link
               target={"_blank"}
               href={"https://www.tmmk.info/donation/"}
-              className="text-sm bg-yellow-400 hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded"
+              className="text-sm  text-black border hover:bg-black hover:text-white font-bold py-2 px-4 rounded"
             >
               Donate
             </Link>
