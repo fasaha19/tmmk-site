@@ -48,22 +48,27 @@ export const Home = () => {
     <>
       <Layout>
         <section>
-          <iframe
-            className="w-full h-[28rem]"
-            src="https://www.youtube.com/embed/QPKwJ-1YABc"
-          ></iframe>
+          <div className="w-full h-[28rem] animate">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/QPKwJ-1YABc"
+            ></iframe>
+          </div>
         </section>
 
         {/* blogs */}
         <section className="grid grid-auto-fit-xs gap-4 mt-16">
-          {blogs.map((item: any) => (
+          {
+            blogs.
+            blogs.map((item: any) => (
             <Card
               blogData={item.attributes}
               blogId={item.id}
               key={item.id}
               blogType={item.attributes?.blogType}
             />
-          ))}
+            ))
+          }
         </section>
 
         {/* video */}

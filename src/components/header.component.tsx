@@ -60,6 +60,24 @@ export const Header = () => {
               Others
             </Link>
           </li>
+          <li>
+            <Link
+              target={"_blank"}
+              href={"https://members.tmmk.info/"}
+              className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Become a member
+            </Link>
+          </li>
+          <li>
+            <Link
+              target={"_blank"}
+              href={"https://www.tmmk.info/donation/"}
+              className="text-sm bg-yellow-400 hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded"
+            >
+              Donate
+            </Link>
+          </li>
           <li></li>
         </ul>
       </nav>
