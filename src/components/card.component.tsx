@@ -23,7 +23,7 @@ export const Card = (props: any) => {
         <div className="p-6">
           {/* <h2 className="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">CATEGORY</h2> */}
           <h1 className="title-font text-lg font-medium text-black mb-3">
-            {blogData?.["title"]} {id}
+            {blogData?.["title"]} 
           </h1>
           <p className="leading-relaxed mb-3 line-clamp-4">
             {blogData?.description}

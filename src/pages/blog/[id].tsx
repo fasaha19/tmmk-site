@@ -72,9 +72,9 @@ export default function BlogDetail(props: any) {
                     </svg>
                   </div>
                   <div className="flex flex-col items-center text-center justify-center">
-                    <h2 className="font-medium title-font mt-4 text-gray-900 text-lg">
+                    <h3 className="font-medium title-font mt-4 text-gray-900 text-lg">
                       {pageData?.attributes?.author}
-                    </h2>
+                    </h3>
                     <div className="w-12 h-1 bg-black-500 rounded mt-2 mb-4"></div>
                     
                   </div>
