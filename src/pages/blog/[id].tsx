@@ -76,11 +76,7 @@ export default function BlogDetail(props: any) {
                       {pageData?.attributes?.author}
                     </h2>
                     <div className="w-12 h-1 bg-black-500 rounded mt-2 mb-4"></div>
-                    <p className="text-base">
-                      Raclette knausgaard hella meggs normcore williamsburg
-                      enamel pin sartorial venmo tbh hot chicken gentrify
-                      portland.
-                    </p>
+                    
                   </div>
                 </div>
                 <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
@@ -93,7 +89,7 @@ export default function BlogDetail(props: any) {
                       return AppConfig.host + src;
                     }}
                   >
-                    {pageData?.attributes?.pressRelease?.body}
+                    {pageData?.attributes?.body}
                   </ReactMarkdown>
                   <div className="h-[1.5px] bg-[#999999]"></div>
                   <span className="mt-4">Share</span>
