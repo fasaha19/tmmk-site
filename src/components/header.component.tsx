@@ -1,12 +1,20 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export const Header = () => {
+  const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleNavBar = () => {
     setIsCollapsed(!isCollapsed);
   };
-
+  const menus = [
+    { id: "1", route: "/", name: "home" },
+    { id: "2", route: "/about", name: "about" },
+    { id: "3", route: "/event", name: "event" },
+    { id: "4", route: "/pressrelease", name: "press release" },
+    { id: "5", route: "/others", name: "others" },
+  ];
   return (
     <>
       <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
@@ -34,7 +42,18 @@ export const Header = () => {
           </button>
         </div>
         <ul className="hidden absolute top-1/2 right-0 transform -translate-y-1/2  lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
-          <li>
+          {menus.map((item) => (
+            <li
+              key={item.id}
+              className={router.pathname == item.route ? "font-extrabold" : ""}
+            >
+              <Link href={item.route} className="text-sm capitalize">
+                {item.name}
+              </Link>
+            </li>
+          ))}
+
+          {/* <li className={router.pathname == "/" ? "bg-red-100" : ""}>
             <Link href={"/"} className="text-sm ">
               Home
             </Link>
@@ -59,7 +78,7 @@ export const Header = () => {
             <Link href={"/others"} className="text-sm ">
               Others
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               target={"_blank"}
@@ -114,46 +133,18 @@ export const Header = () => {
           </div>
           <div>
             <ul>
-              <li className="mb-1">
-                <Link
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
-                  href="/"
+              {menus.map((item) => (
+                <li
+                  key={item.id}
+                  className={
+                    router.pathname == item.route ? "font-extrabold" : ""
+                  }
                 >
-                  Home
-                </Link>
-              </li>
-              <li className="mb-1">
-                <Link
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
-                  href="/about"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li className="mb-1">
-                <Link
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
-                  href="/event"
-                >
-                  Events
-                </Link>
-              </li>
-              <li className="mb-1">
-                <Link
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
-                  href="/pressrelease"
-                >
-                  Press release
-                </Link>
-              </li>
-              <li className="mb-1">
-                <Link
-                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-black rounded"
-                  href="/others"
-                >
-                  Others
-                </Link>
-              </li>
+                  <Link href={item.route} className="text-sm capitalize">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
               <li className="mb-1">
                 <Link
                   target={"_blank"}
