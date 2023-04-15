@@ -2,6 +2,7 @@ import { AppConfig } from "@/app.config";
 import { Card } from "@/components/card.component";
 import { Layout } from "@/components/layout.component";
 import RequestServices from "@/services/requests.services";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
@@ -11,9 +12,9 @@ export const Home = () => {
   const [pressRelease, setPressRelease] = useState([]);
   const [announcements, setAnnouncements] = useState<any>();
 
-  const fetchData = async () => {
+  const fetchBlogData = async () => {
     const service = new RequestServices();
-    return await service.getRequest(AppConfig.routes.blog.allBlogs);
+    return await service.getRequest(AppConfig.routes.blog.top4blog);
   };
   const fetchFeaturedVideo = async () => {
     const service = new RequestServices();
@@ -30,7 +31,7 @@ export const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const result = await fetchData();
+      const result = await fetchBlogData();
       setBlogs(result?.data.data);
 
       const featuredVideos = await fetchFeaturedVideo();
@@ -57,7 +58,14 @@ export const Home = () => {
         </section>
 
         {/* blogs */}
-        <section className="grid grid-auto-fit-xs gap-4 mt-16">
+        <div className="flex  mt-16 items-end justify-between">
+          <h1>Featured blogs</h1>
+          <Link href={`allBlog/blog`}>
+            <h6 className="underline">View all</h6>
+          </Link>{" "}
+        </div>
+
+        <section className="grid grid-auto-fit-xs gap-4 mt-4">
           {blogs.length > 0
             ? blogs.map((item: any) => (
                 <Card
@@ -75,7 +83,7 @@ export const Home = () => {
         {/* video */}
         <section className="mt-16">
           <h1>Featured videos</h1>
-          <div className="grid grid-auto-fit-xs gap-4">
+          <div className="grid grid-auto-fit-xs gap-4 mt-4">
             {featuredVideo.length > 0
               ? featuredVideo.map((item: any) => (
                   <div key={item?.id}>
@@ -93,10 +101,15 @@ export const Home = () => {
 
         {/* press release */}
         <section className="mt-16">
-          <div className="grid grid-auto-fit gap-6">
+          <div className="grid grid-auto-fit gap-8">
             <div className="flex flex-col">
-              <h1>Press Release</h1>
-              <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4">
+              <div className="flex items-end justify-between">
+                <h1>Press Release</h1>
+                <Link href={`allBlog/pressRelease`}>
+                  <h6 className="underline">View all</h6>
+                </Link>
+              </div>{" "}
+              <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4 mt-4">
                 {pressRelease.length > 0
                   ? pressRelease?.map((item: any) => (
                       <Card
@@ -113,9 +126,14 @@ export const Home = () => {
             </div>
             <div className="flex flex-col">
               <h1>Announcements</h1>
-              <div className="flex flex-col border border-1 p-6">
+              <div className="flex flex-col border border-1 p-6 shadow-md">
                 {announcements?.map((item: any) => (
-                  <ReactMarkdown key={item.id}>
+                  <ReactMarkdown
+                    key={item.id}
+                    transformImageUri={(src) => {
+                      return AppConfig.host + src;
+                    }}
+                  >
                     {item.attributes.announcementMsg}
                   </ReactMarkdown>
                 ))}

@@ -4,10 +4,16 @@ const AppConfig: any = {
   routes: {
     aboutUs: "aboutuses?populate=*",
     blog:
-      { allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=blog", blogById: 'blogs/' },
-    featuredVideo: "home-featured-videos?populate=*",
+    {
+      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=blog",
+      blogById: 'blogs/',
+      top4blog: "blogs?populate=*&filters[$and][0][blogType][$eq]=blog&pagination[page]=1&pagination[pageSize]=4"
+    },
+    featuredVideo: "home-featured-videos?populate=*&pagination[page]=1&pagination[pageSize]=4",
     pressRelease: {
-      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease", blogById: "blogs/"
+      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease",
+      blogById: "blogs/",
+      top4blog: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&pagination[page]=1&pagination[pageSize]=4"
     },
     announcements: "home-announcements",
     event: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&sort=id:ASC&filters[$and][0][id][$gte]=2",
