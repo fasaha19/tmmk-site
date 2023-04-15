@@ -30,7 +30,7 @@ export default function BlogType() {
       <Layout>
         <section>
           <h1>{blogType}</h1>
-          <section className="grid grid-auto-fit-xs gap-4 mt-4 ">
+          <section className="grid grid-auto-fit-xs md:grid-cols-4 gap-4 mt-4 ">
             {blogData?.length > 0
               ? blogData.map((item: any) => (
                   <Card
