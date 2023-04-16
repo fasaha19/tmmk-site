@@ -22,7 +22,7 @@ export default function BlogType() {
   const fetchData = async () => {
     const service = new RequestServices();
     return await service.getRequest(
-      `${AppConfig.routes?.[blogType]?.allBlogs}`
+      `${AppConfig.routes?.[blogType]?.allBlogs}&pagination[page]=1&pagination[pageSize]=100`
     );
   };
   return (
