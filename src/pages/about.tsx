@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout.component";
 import { useEffect, useState } from "react";
 import RequestServices from "@/services/requests.services";
 import { AppConfig } from "@/app.config";
+import Image from "next/image";
 
 const About = () => {
   let [aboutUs, setAboutUs] = useState([]);
@@ -22,16 +23,18 @@ const About = () => {
       <Layout>
         {aboutUs.map((item: any, index: number) => (
           <section className="grid grid-auto-fit mt-8 gap-6" key={item?.id}>
-            <img
-              className={`object-cover shadow-md object-center rounded 
-              md:order-${index % 2 == 0 ? "1" : "0"}`}
-              alt="hero"
-              src={`${
-                item.attributes?.image.data.attributes.url
-                  ? hostUrl + item.attributes?.image.data.attributes.url
-                  : "https://dummyimage.com/720x600"
-              }`}
-            />
+            <div className="col-span-6 md:col-span-2 lg:col-span-1 aspect-square w-full animate relative">
+              <Image
+                fill
+                className="object-cover transition-all ease-in-out delay-1000"
+                alt="about tmmk"
+                src={`${
+                  item.attributes?.image.data.attributes.url
+                    ? hostUrl + item.attributes?.image.data.attributes.url
+                    : "https://dummyimage.com/720x600"
+                }`}
+              />
+            </div>
             <div className="flex flex-col justify-center ">
               <h1>{item.attributes?.title}</h1>
               <p>{item.attributes?.description}</p>
