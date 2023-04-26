@@ -14,6 +14,7 @@ import {
   FaTwitterSquare,
   FaWhatsappSquare,
 } from "react-icons/fa";
+import Head from "next/head";
 
 export default function BlogDetails() {
   const router = useRouter();
@@ -39,6 +40,21 @@ export default function BlogDetails() {
   return (
     <>
       <Layout>
+        <Head>
+          <title>
+            {blogData?.attributes?.title
+              ? "TMMK - " + blogData?.attributes?.title
+              : "TMMK Blog"}
+          </title>
+          <meta
+            name="description"
+            content={
+              blogData?.attributes?.description
+                ? blogData?.attributes?.description
+                : "TMMK"
+            }
+          />
+        </Head>
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto flex flex-col">
             <div className="lg:w-4/6 mx-auto">

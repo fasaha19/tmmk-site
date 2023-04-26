@@ -7,7 +7,7 @@ export const Layout = ({ children }: any) => {
     <>
       <Header />
       <Head>
-        <title> TMMK</title>
+        <title>TMMK</title>
         <meta name="description" content="Tamil nadu muslim munnetra kalagam" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
