@@ -15,6 +15,7 @@ const AppConfig: any = {
       blogById: "blogs/",
       top4blog: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&pagination[page]=1&pagination[pageSize]=4"
     },
+    socialMediaLink: "social-medial-link?populate=*",
     announcements: "home-announcements",
     event: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&sort=id:ASC&filters[$and][0][id][$gte]=2",
     eventMedia: "event-media?populate=*",
