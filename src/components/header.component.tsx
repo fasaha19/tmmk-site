@@ -1,20 +1,34 @@
+import { AppConfig } from "@/app.config";
+import RequestServices from "@/services/requests.services";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
+  const fieldNameUrl = AppConfig.fieldName;
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [fieldName, setFieldName] = useState<any>([]);
   const toggleNavBar = () => {
     setIsCollapsed(!isCollapsed);
   };
   const menus = [
-    { id: "1", route: "/", name: "home" },
-    { id: "2", route: "/about", name: "about" },
-    { id: "3", route: "/event", name: "event" },
-    { id: "4", route: "/pressrelease", name: "press release" },
-    { id: "5", route: "/others", name: "others" },
+    { id: "1", route: "/", name: fieldName?.home },
+    { id: "2", route: "/about", name: fieldName?.about },
+    { id: "3", route: "/event", name: fieldName?.event },
+    { id: "4", route: "/pressrelease", name: fieldName?.pressRelease },
+    { id: "5", route: "/others", name: fieldName?.others },
   ];
+  useEffect(() => {
+    (async () => {
+      const result = await fetchData();
+      setFieldName(result?.data.data[0]["attributes"]["home"]);
+    })();
+  }, [fieldName]);
+  const fetchData = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(fieldNameUrl);
+  };
   return (
     <>
       <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
@@ -85,7 +99,7 @@ export const Header = () => {
               href={"https://members.tmmk.info/"}
               className="text-sm bg-black hover:bg-[#383838] text-white font-bold py-2 px-4 rounded"
             >
-              Become a member
+              {fieldName?.becomeAmember}
             </Link>
           </li>
           <li>
@@ -94,7 +108,7 @@ export const Header = () => {
               href={"https://www.tmmk.info/donation/"}
               className="text-sm  text-black border hover:bg-black hover:text-white font-bold py-2 px-4 rounded"
             >
-              Donate
+              {fieldName?.donate}
             </Link>
           </li>
           <li></li>
@@ -151,7 +165,7 @@ export const Header = () => {
                   href={"https://members.tmmk.info/"}
                   className="block p-4  text-sm bg-black hover:bg-[#383838] text-white font-bold py-2 px-4 rounded"
                 >
-                  Become a member
+                  {fieldName?.becomeAmember}
                 </Link>
               </li>
               <li>
@@ -160,7 +174,7 @@ export const Header = () => {
                   href={"https://www.tmmk.info/donation/"}
                   className="text-sm  block p-4  text-black border hover:bg-black hover:text-white font-bold py-2 px-4 rounded"
                 >
-                  Donate
+                  {fieldName?.donate}
                 </Link>
               </li>
             </ul>

@@ -22,7 +22,8 @@ const AppConfig: any = {
     pressMedia: "event?populate=*", // /event = pressMeida route!
   },
   ssgFetchBlogUrl: "blogs?populate=*",
-  siteUrl: "http://tmmk.info:3000"
+  siteUrl: "http://tmmk.info:3000",
+  fieldName: "field-names?populate=*"
 };
 
 export { AppConfig, };

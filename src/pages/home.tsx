@@ -28,6 +28,13 @@ export const Home = () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.announcements);
   };
+  const fetchFields = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(fieldNameUrl);
+  };
+
+  const fieldNameUrl = AppConfig.fieldName;
+  const [fieldName, setFieldName] = useState<any>([]);
 
   useEffect(() => {
     (async () => {
@@ -42,8 +49,11 @@ export const Home = () => {
 
       const announcementsData = await fetchAnnouncements();
       setAnnouncements(announcementsData?.data.data);
+
+      const fetchField = await fetchFields();
+      setFieldName(fetchField?.data.data[0]["attributes"]["home"]);
     })();
-  }, []);
+  }, [fieldName]);
 
   return (
     <>
@@ -59,9 +69,9 @@ export const Home = () => {
 
         {/* blogs */}
         <div className="flex  mt-16 items-end justify-between">
-          <h1>Featured blogs</h1>
+          <h1>{fieldName?.["Featured blogs"]}</h1>
           <Link href={`allBlog/blog`}>
-            <h6 className="underline">View all</h6>
+            <h6 className="underline">{fieldName?.["View all"]}</h6>
           </Link>{" "}
         </div>
 
@@ -82,7 +92,7 @@ export const Home = () => {
 
         {/* video */}
         <section className="mt-16">
-          <h1>Featured videos</h1>
+          <h1>{fieldName?.["Featured blogs"]}</h1>
           <div className="grid grid-auto-fit-xs gap-4 mt-4">
             {featuredVideo.length > 0
               ? featuredVideo.map((item: any) => (
@@ -104,9 +114,9 @@ export const Home = () => {
           <div className="grid grid-auto-fit gap-8">
             <div className="flex flex-col">
               <div className="flex items-end justify-between">
-                <h1>Press Release</h1>
+                <h1>{fieldName?.["pressRelease"]}</h1>
                 <Link href={`allBlog/pressRelease`}>
-                  <h6 className="underline">View all</h6>
+                  <h6 className="underline">{fieldName?.["View all"]}</h6>
                 </Link>
               </div>{" "}
               <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4 mt-4">
@@ -125,7 +135,7 @@ export const Home = () => {
               </div>
             </div>
             <div className="flex flex-col">
-              <h1>Announcements</h1>
+              <h1>{fieldName?.["Announcements"]}</h1>
               <div className="flex flex-col border border-1 p-6 shadow-md">
                 {announcements?.map((item: any) => (
                   <ReactMarkdown
