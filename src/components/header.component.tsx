@@ -9,6 +9,7 @@ export const Header = () => {
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [fieldName, setFieldName] = useState<any>([]);
+  const [headerImg, setHeaderImg] = useState<any>("");
   const toggleNavBar = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -23,22 +24,37 @@ export const Header = () => {
     (async () => {
       const result = await fetchData();
       setFieldName(result?.data.data[0]["attributes"]["home"]);
+      const headImg = await fetchImage();
+      setHeaderImg(
+        headImg?.data?.data?.attributes?.headerImage?.data?.attributes?.url
+      );
     })();
-  }, [fieldName]);
+  }, [fieldName, headerImg]);
   const fetchData = async () => {
     const service = new RequestServices();
     return await service.getRequest(fieldNameUrl);
   };
+  const fetchImage = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.headersImage);
+  };
   return (
     <>
-      <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
-        <Link href={"/"} className="text-3xl font-bold leading-none">
+      <nav className="w-100">
+        <img
+          src={`http://tmmk.info:5505${headerImg}`}
+          alt=""
+          className="h-[8rem] w-full mx-auto object-fill"
+        />
+      </nav>
+      <nav className="relative px-4 py-8 flex justify-between items-center bg-white">
+        {/* <Link href={"/"} className="text-3xl font-bold leading-none">
           <img
             src="https://members.tmmk.info/assets/images/flag_tmmk.jpg"
             alt=""
             className="h-12 w-[4rem]"
           />
-        </Link>
+        </Link> */}
 
         <div className="lg:hidden">
           <button
@@ -55,7 +71,7 @@ export const Header = () => {
             </svg>
           </button>
         </div>
-        <ul className="hidden absolute top-1/2 right-0 transform -translate-y-1/2  lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
+        <ul className="hidden lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
           {menus.map((item) => (
             <li
               key={item.id}
