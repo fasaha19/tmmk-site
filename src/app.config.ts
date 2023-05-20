@@ -15,6 +15,16 @@ const AppConfig: any = {
       blogById: "blogs/",
       top4blog: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&pagination[page]=1&pagination[pageSize]=4"
     },
+    acheivements: {
+      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=acheivements",
+      blogById: "blogs/",
+      top4blog: "blogs?populate=*&filters[$and][0][blogType][$eq]=acheivements&pagination[page]=1&pagination[pageSize]=4"
+    },
+    services: {
+      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=services",
+      blogById: "blogs/",
+      top4blog: "blogs?populate=*&filters[$and][0][blogType][$eq]=services&pagination[page]=1&pagination[pageSize]=4"
+    },
     socialMediaLink: "social-medial-link?populate=*",
     headersImage: "header-banner-image?populate=*",
     announcements: "home-announcements",
