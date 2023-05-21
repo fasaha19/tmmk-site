@@ -31,6 +31,7 @@ const AppConfig: any = {
     event: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&sort=id:ASC&filters[$and][0][id][$gte]=2",
     eventMedia: "event-media?populate=*",
     pressMedia: "event?populate=*", // /event = pressMeida route!
+    administration: "administrations?populate=*",
   },
   ssgFetchBlogUrl: "blogs?populate=*",
   siteUrl: "http://tmmk.info:3000",

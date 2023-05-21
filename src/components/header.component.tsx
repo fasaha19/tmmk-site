@@ -16,11 +16,11 @@ export const Header = () => {
   const menus = [
     { id: "1", route: "/", name: fieldName?.home },
     { id: "2", route: "/about", name: fieldName?.about },
-    { id: "3", route: "/event", name: fieldName?.event },
+    { id: "3", route: "/administration", name: fieldName?.administration },
     { id: "4", route: "/pressrelease", name: fieldName?.pressRelease },
     { id: "5", route: "/allBlog/acheivements", name: fieldName?.acheivements },
-    { id: "5", route: "/allBlog/services", name: fieldName?.services },
-    { id: "6", route: "/others", name: fieldName?.others },
+    { id: "6", route: "/allBlog/services", name: fieldName?.services },
+    { id: "7", route: "/others", name: fieldName?.others },
   ];
   useEffect(() => {
     (async () => {
@@ -31,7 +31,7 @@ export const Header = () => {
         headImg?.data?.data?.attributes?.headerImage?.data?.attributes?.url
       );
     })();
-  }, [fieldName, headerImg]);
+  }, []);
   const fetchData = async () => {
     const service = new RequestServices();
     return await service.getRequest(fieldNameUrl);
@@ -44,7 +44,7 @@ export const Header = () => {
     <>
       <nav className="w-100">
         <img
-          src={`http://tmmk.info:5505${headerImg}`}
+          src={`${AppConfig.host + headerImg}`}
           alt=""
           className="h-[8rem] w-full mx-auto object-fill"
         />
