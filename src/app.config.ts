@@ -32,6 +32,7 @@ const AppConfig: any = {
     eventMedia: "event-media?populate=*",
     pressMedia: "event?populate=*", // /event = pressMeida route!
     administration: "administrations?populate=*",
+    wing: "wings?populate=*",
   },
   ssgFetchBlogUrl: "blogs?populate=*",
   siteUrl: "http://tmmk.info:3000",

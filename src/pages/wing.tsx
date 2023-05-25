@@ -4,25 +4,26 @@ import RequestServices from "@/services/requests.services";
 import { AppConfig } from "@/app.config";
 import Link from "next/link";
 
-const Administration = () => {
+const wing = () => {
   let [administration, setAboutUs] = useState([]);
   const hostUrl = AppConfig.host;
   useEffect(() => {
     (async () => {
       const result = await fetchData();
       setAboutUs(result?.data.data);
+      console.log(result?.data.data);
     })();
   }, []);
   const fetchData = async () => {
     const service = new RequestServices();
-    return await service.getRequest(AppConfig.routes.administration);
+    return await service.getRequest(AppConfig.routes.wing);
   };
   return (
     <>
       <Layout>
         <section className="grid grid-auto-fit mt-8 gap-6">
           {administration.map((item: any, index: number) => (
-            <Link href={`/administration/${item.id}`} key={item?.id}>
+            <Link href={`/wing/${item.id}`} key={item?.id}>
               <div className="card shadow  rounded-md hover:shadow-lg  flex items-center py-16 px-8 justify-center ">
                 <h1>{item.attributes?.pageTitle}</h1>
               </div>
@@ -34,4 +35,4 @@ const Administration = () => {
   );
 };
 
-export default Administration;
+export default wing;

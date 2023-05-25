@@ -21,6 +21,7 @@ export const Header = () => {
     { id: "5", route: "/allBlog/acheivements", name: fieldName?.acheivements },
     { id: "6", route: "/allBlog/services", name: fieldName?.services },
     { id: "7", route: "/others", name: fieldName?.others },
+    { id: "8", route: "/wing", name: fieldName?.wing },
   ];
   useEffect(() => {
     (async () => {
