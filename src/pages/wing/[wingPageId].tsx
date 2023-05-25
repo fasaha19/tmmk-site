@@ -1,15 +1,13 @@
 import { AppConfig } from "@/app.config";
 import { Layout } from "@/components/layout.component";
 import RequestServices from "@/services/requests.services";
-import { Html } from "next/document";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { FaFacebook, FaFacebookF, FaPhone, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaPhone, FaTwitter } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Timeline } from "react-twitter-widgets";
-import remarkGfm from "remark-gfm";
 
 export default function WingPageType() {
   const router = useRouter();
