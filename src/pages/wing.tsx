@@ -4,13 +4,13 @@ import RequestServices from "@/services/requests.services";
 import { AppConfig } from "@/app.config";
 import Link from "next/link";
 
-const wing = () => {
-  let [administration, setAboutUs] = useState([]);
+const Wing = () => {
+  let [wingData, setWingData] = useState([]);
   const hostUrl = AppConfig.host;
   useEffect(() => {
     (async () => {
       const result = await fetchData();
-      setAboutUs(result?.data.data);
+      setWingData(result?.data.data);
       console.log(result?.data.data);
     })();
   }, []);
@@ -22,7 +22,7 @@ const wing = () => {
     <>
       <Layout>
         <section className="grid grid-auto-fit mt-8 gap-6">
-          {administration.map((item: any, index: number) => (
+          {wingData.map((item: any, index: number) => (
             <Link href={`/wing/${item.id}`} key={item?.id}>
               <div className="card shadow  rounded-md hover:shadow-lg  flex items-center py-16 px-8 justify-center ">
                 <h1>{item.attributes?.pageTitle}</h1>
@@ -35,4 +35,4 @@ const wing = () => {
   );
 };
 
-export default wing;
+export default Wing;
