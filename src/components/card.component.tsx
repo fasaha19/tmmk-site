@@ -9,7 +9,7 @@ export const Card = (props: any) => {
   return (
     <Link href={`/blog/${id}`}>
       <div
-        className={`h-full border-2 shadow-lg rounded-lg overflow-hidden ${id}`}
+        className={`h-full border-2 shadow-xl rounded-lg overflow-hidden ${id}`}
       >
         <img
           className="lg:h-48 md:h-36 w-full object-cover object-center"

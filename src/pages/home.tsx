@@ -1,4 +1,5 @@
 import { AppConfig } from "@/app.config";
+import Button from "@/components/button.component";
 import { Card } from "@/components/card.component";
 import { Layout } from "@/components/layout.component";
 import RequestServices from "@/services/requests.services";
@@ -71,7 +72,8 @@ export const Home = () => {
         <div className="flex  mt-16 items-end justify-between">
           <h1>{fieldName?.["Featured blogs"]}</h1>
           <Link href={`allBlog/blog`}>
-            <h6 className="underline">{fieldName?.["View all"]}</h6>
+            <Button name={fieldName?.["View all"]} />
+            {/* <h6 className="viewall-btn">{fieldName?.["View all"]}</h6> */}
           </Link>{" "}
         </div>
 
@@ -116,7 +118,7 @@ export const Home = () => {
               <div className="flex items-end justify-between">
                 <h1>{fieldName?.["pressRelease"]}</h1>
                 <Link href={`allBlog/pressRelease`}>
-                  <h6 className="underline">{fieldName?.["View all"]}</h6>
+                  <Button name={fieldName?.["View all"]} />
                 </Link>
               </div>{" "}
               <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4 mt-4">

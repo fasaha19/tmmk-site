@@ -78,9 +78,9 @@ export const Header = () => {
           {menus.map((item) => (
             <li
               key={item.id}
-              className={router.pathname == item.route ? "font-extrabold" : ""}
+              className={router.pathname == item.route ? "active-menu" : ""}
             >
-              <Link href={item.route} className="text-sm capitalize">
+              <Link href={item.route} className="text-base m-2 capitalize">
                 {item.name}
               </Link>
             </li>
@@ -125,7 +125,7 @@ export const Header = () => {
             <Link
               target={"_blank"}
               href={"https://www.tmmk.info/donation/"}
-              className="text-sm  text-black border hover:bg-black hover:text-white font-bold py-2 px-4 rounded"
+              className="text-sm  text-black bg-gradient-to-r from-amber-200 to-amber-300  animation-pulse font-bold py-2 px-4 rounded"
             >
               {fieldName?.donate}
             </Link>
@@ -169,11 +169,9 @@ export const Header = () => {
               {menus.map((item) => (
                 <li
                   key={item.id}
-                  className={
-                    router.pathname == item.route ? "font-extrabold" : ""
-                  }
+                  className={router.pathname == item.route ? "active-menu" : ""}
                 >
-                  <Link href={item.route} className="text-sm capitalize">
+                  <Link href={item.route} className="text-base m-2 capitalize">
                     {item.name}
                   </Link>
                 </li>
@@ -218,6 +216,73 @@ export const Header = () => {
             </p>
           </div> */}
         </nav>
+      </div>
+
+      <div className="position-relative marquee-container mb-8">
+        <div className="marquee d-flex justify-content-around">
+          <span>
+            BTC<b>3,588.39</b>
+          </span>
+          <span>
+            XRP<b>0.32</b>
+          </span>
+          <span>
+            ETH<b>116.36</b>
+          </span>
+          <span>
+            EOS<b>2.44</b>
+          </span>
+          <span>
+            USDT<b>1.01</b>
+          </span>
+          <span>
+            LTC<b>32.61</b>
+          </span>
+          <span>
+            XLM<b>0.10</b>
+          </span>
+          <span>
+            TRX<b>0.03</b>
+          </span>
+          <span>
+            BSV<b>74.29</b>
+          </span>
+          <span>
+            ADA<b>0.04</b>
+          </span>
+        </div>
+        <div className="marquee marquee2 d-flex justify-content-around">
+          <span>
+            BTC<b>3,588.39</b>
+          </span>
+          <span>
+            XRP<b>0.32</b>
+          </span>
+          <span>
+            ETH<b>116.36</b>
+          </span>
+          <span>
+            EOS<b>2.44</b>
+          </span>
+          <span>
+            USDT<b>1.01</b>
+          </span>
+          <span>
+            LTC<b>32.61</b>
+          </span>
+          <span>
+            XLM<b>0.10</b>
+          </span>
+          <span>
+            TRX<b>0.03</b>
+          </span>
+          <span>
+            BSV<b>74.29</b>
+          </span>
+          <span>
+            ADA<b>0.04</b>
+          </span>
+        </div>
       </div>
     </>
   );

@@ -1,0 +1,40 @@
+.marquee-container {
+  height: 30px;
+  overflow: hidden;
+  line-height: 30px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.907);
+  color: white;
+  .marquee {
+    left: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee2 {
+    animation-delay: 15s;
+  }
+  span {
+    padding-left: 8em;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.active-menu {
+  color: black;
+  font-weight: bolder;
+  background-color: rgba(24, 24, 24, 0.057);
+  padding: 0.5em 2em;
+  border-radius: 2em;
+}

@@ -6,6 +6,8 @@
 @import "./reset.scss";
 @import "./variables.scss";
 @import "./typography.scss";
+@import "./header.scss";
+@import "./animation.scss";
 
 * {
   font-family: $font-family-name, $font-generic-name;
@@ -13,6 +15,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .animate {
@@ -32,4 +35,12 @@ html {
 
 iframe {
   transition: all 2s ease;
+}
+
+.viewall-btn {
+  // background-color: black;
+  color: #fff;
+  padding: 0.5em 2em;
+  border-radius: 2em;
+  font-weight: 600;
 }
