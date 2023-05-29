@@ -47,7 +47,7 @@ export const Header = () => {
         <img
           src={`${AppConfig.host + headerImg}`}
           alt=""
-          className="h-[8rem] w-full mx-auto object-fill"
+          className="h-[8rem] w-full mx-auto object-cover"
         />
       </nav>
       <nav className="relative px-4 py-8 flex justify-between items-center bg-white">

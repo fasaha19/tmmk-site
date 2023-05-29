@@ -24,8 +24,14 @@ const Wing = () => {
         <section className="grid grid-auto-fit mt-8 gap-6">
           {wingData.map((item: any, index: number) => (
             <Link href={`/wing/${item.id}`} key={item?.id}>
-              <div className="card shadow  rounded-md hover:shadow-lg  flex items-center py-16 px-8 justify-center ">
-                <h1>{item.attributes?.pageTitle}</h1>
+              <div className="card shadow  rounded-md hover:shadow-lg gap-6  flex flex-col items-center py-8 px-8 w-[22rem] h-[18rem] justify-center">
+                <img
+                  width="50"
+                  height="50"
+                  src="https://img.icons8.com/ios-filled/50/external-link.png"
+                  alt="external-link"
+                />{" "}
+                <h1 className="line-clamp-2">{item.attributes?.pageTitle}</h1>
               </div>
             </Link>
           ))}
