@@ -10,6 +10,7 @@ export const Header = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [fieldName, setFieldName] = useState<any>([]);
   const [headerImg, setHeaderImg] = useState<any>("");
+  const [marquee, setMarquee] = useState<any>([]);
   const toggleNavBar = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -31,6 +32,8 @@ export const Header = () => {
       setHeaderImg(
         headImg?.data?.data?.attributes?.headerImage?.data?.attributes?.url
       );
+      const marqueeData = await fetchMarquee();
+      setMarquee(marqueeData?.data?.attributes);
     })();
   }, []);
   const fetchData = async () => {
@@ -40,6 +43,10 @@ export const Header = () => {
   const fetchImage = async () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.headersImage);
+  };
+  const fetchMarquee = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.marquees);
   };
   return (
     <>

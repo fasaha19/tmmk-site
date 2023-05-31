@@ -33,6 +33,7 @@ const AppConfig: any = {
     pressMedia: "event?populate=*", // /event = pressMeida route!
     administration: "administrations?populate=*",
     wing: "wings?populate=*",
+    marquees: "marquees?populate=*",
   },
   ssgFetchBlogUrl: "blogs?populate=*",
   siteUrl: "http://tmmk.info:3000",

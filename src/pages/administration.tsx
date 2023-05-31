@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import RequestServices from "@/services/requests.services";
 import { AppConfig } from "@/app.config";
 import Link from "next/link";
+import ListCard from "@/components/listCard.component";
 
 const Administration = () => {
   let [administration, setAboutUs] = useState([]);
@@ -23,15 +24,7 @@ const Administration = () => {
         <section className="grid grid-auto-fit mt-8 gap-6">
           {administration.map((item: any, index: number) => (
             <Link href={`/administration/${item.id}`} key={item?.id}>
-              <div className="card shadow rounded-md hover:shadow-lg gap-6  flex flex-col items-center py-8 px-8 w-[22rem] h-[18rem] justify-center">
-                <img
-                  width="50"
-                  height="50"
-                  src="https://img.icons8.com/ios-filled/50/external-link.png"
-                  alt="external-link"
-                />{" "}
-                <h1 className="line-clamp-2">{item.attributes?.pageTitle}</h1>
-              </div>
+              <ListCard data={item.attributes} />
             </Link>
           ))}
         </section>
