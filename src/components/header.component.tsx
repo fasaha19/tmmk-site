@@ -33,9 +33,9 @@ export const Header = () => {
         headImg?.data?.data?.attributes?.headerImage?.data?.attributes?.url
       );
       const marqueeData = await fetchMarquee();
-      setMarquee(marqueeData?.data?.attributes);
+      setMarquee(marqueeData?.data?.data[0]?.attributes?.marqueeText);
     })();
-  }, []);
+  }, [marquee]);
   const fetchData = async () => {
     const service = new RequestServices();
     return await service.getRequest(fieldNameUrl);
@@ -224,73 +224,15 @@ export const Header = () => {
           </div> */}
         </nav>
       </div>
-
-      <div className="position-relative marquee-container mb-8">
-        <div className="marquee d-flex justify-content-around">
-          <span>
-            BTC<b>3,588.39</b>
-          </span>
-          <span>
-            XRP<b>0.32</b>
-          </span>
-          <span>
-            ETH<b>116.36</b>
-          </span>
-          <span>
-            EOS<b>2.44</b>
-          </span>
-          <span>
-            USDT<b>1.01</b>
-          </span>
-          <span>
-            LTC<b>32.61</b>
-          </span>
-          <span>
-            XLM<b>0.10</b>
-          </span>
-          <span>
-            TRX<b>0.03</b>
-          </span>
-          <span>
-            BSV<b>74.29</b>
-          </span>
-          <span>
-            ADA<b>0.04</b>
-          </span>
+      {marquee ? (
+        <div className="position-relative marquee-container mb-8">
+          <div className="marquee d-flex justify-content-around">
+            {marquee?.map((item: any) => (
+              <span key={item?.marqueeText}>{item?.marqueeText}</span>
+            ))}
+          </div>
         </div>
-        <div className="marquee marquee2 d-flex justify-content-around">
-          <span>
-            BTC<b>3,588.39</b>
-          </span>
-          <span>
-            XRP<b>0.32</b>
-          </span>
-          <span>
-            ETH<b>116.36</b>
-          </span>
-          <span>
-            EOS<b>2.44</b>
-          </span>
-          <span>
-            USDT<b>1.01</b>
-          </span>
-          <span>
-            LTC<b>32.61</b>
-          </span>
-          <span>
-            XLM<b>0.10</b>
-          </span>
-          <span>
-            TRX<b>0.03</b>
-          </span>
-          <span>
-            BSV<b>74.29</b>
-          </span>
-          <span>
-            ADA<b>0.04</b>
-          </span>
-        </div>
-      </div>
+      ) : null}
     </>
   );
 };
