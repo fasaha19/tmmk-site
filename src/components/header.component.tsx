@@ -85,7 +85,11 @@ export const Header = () => {
           {menus.map((item) => (
             <li
               key={item.id}
-              className={router.pathname == item.route ? "active-menu" : ""}
+              className={
+                router.pathname == item.route
+                  ? "active-menu"
+                  : "hover:bg-gray-100 py-[0.5em] px-[1.5em] hover:rounded-3xl"
+              }
             >
               <Link href={item.route} className="text-base m-2 capitalize">
                 {item.name}
