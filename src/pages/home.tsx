@@ -78,7 +78,7 @@ export const Home = () => {
         </div>
 
         <section className="grid grid-auto-fit-xs gap-4 mt-4">
-          {blogs.length > 0
+          {blogs?.length > 0
             ? blogs.map((item: any) => (
                 <Card
                   blogData={item.attributes}
@@ -96,7 +96,7 @@ export const Home = () => {
         <section className="mt-16">
           <h1>{fieldName?.["Featured blogs"]}</h1>
           <div className="grid grid-auto-fit-xs gap-4 mt-4">
-            {featuredVideo.length > 0
+            {featuredVideo?.length > 0
               ? featuredVideo.map((item: any) => (
                   <div key={item?.id}>
                     <iframe
@@ -122,7 +122,7 @@ export const Home = () => {
                 </Link>
               </div>{" "}
               <div className="grid md:grid-cols-2 xs:grid-cols-1 gap-4 mt-4">
-                {pressRelease.length > 0
+                {pressRelease?.length > 0
                   ? pressRelease?.map((item: any) => (
                       <Card
                         blogData={item.attributes}

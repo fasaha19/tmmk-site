@@ -1,4 +1,5 @@
 import { AppConfig } from "@/app.config";
+import NavButtons from "@/components/nav-buttons.component";
 import RequestServices from "@/services/requests.services";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -17,12 +18,11 @@ export const Header = () => {
   const menus = [
     { id: "1", route: "/", name: fieldName?.home },
     { id: "2", route: "/about", name: fieldName?.about },
-    { id: "3", route: "/administration", name: fieldName?.administration },
-    { id: "4", route: "/pressrelease", name: fieldName?.pressRelease },
-    { id: "5", route: "/allBlog/acheivements", name: fieldName?.acheivements },
-    { id: "6", route: "/allBlog/services", name: fieldName?.services },
-    { id: "7", route: "/others", name: fieldName?.others },
-    { id: "8", route: "/wing", name: fieldName?.wing },
+    { id: "3", route: "/pressrelease", name: fieldName?.pressRelease },
+    { id: "4", route: "/administration", name: fieldName?.administration },
+    { id: "5", route: "/wing", name: fieldName?.wing },
+    { id: "6", route: "/allBlog/acheivements", name: fieldName?.acheivements },
+    { id: "7", route: "/allBlog/services", name: fieldName?.services },
   ];
   useEffect(() => {
     (async () => {
@@ -57,7 +57,7 @@ export const Header = () => {
           className="h-[8rem] w-full mx-auto object-cover"
         />
       </nav>
-      <nav className="relative px-4 py-8 flex justify-between items-center bg-white">
+      <nav className="relative px-4 py-8 flex justify-between items-center bg-white ">
         {/* <Link href={"/"} className="text-3xl font-bold leading-none">
           <img
             src="https://members.tmmk.info/assets/images/flag_tmmk.jpg"
@@ -91,7 +91,7 @@ export const Header = () => {
                   : "hover:bg-gray-100 py-[0.5em] px-[1.5em] hover:rounded-3xl"
               }
             >
-              <Link href={item.route} className="text-base m-2 capitalize">
+              <Link href={item.route} className="text-2xl m-2 capitalize">
                 {item.name}
               </Link>
             </li>
@@ -123,7 +123,7 @@ export const Header = () => {
               Others
             </Link>
           </li> */}
-          <li>
+          {/* <li>
             <Link
               target={"_blank"}
               href={"https://members.tmmk.info/"}
@@ -140,7 +140,7 @@ export const Header = () => {
             >
               {fieldName?.donate}
             </Link>
-          </li>
+          </li> */}
           <li></li>
         </ul>
       </nav>
@@ -187,7 +187,7 @@ export const Header = () => {
                   </Link>
                 </li>
               ))}
-              <li className="mb-1">
+              {/* <li className="mb-1">
                 <Link
                   target={"_blank"}
                   href={"https://members.tmmk.info/"}
@@ -204,7 +204,7 @@ export const Header = () => {
                 >
                   {fieldName?.donate}
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           {/* <div className="mt-auto">
@@ -229,7 +229,7 @@ export const Header = () => {
         </nav>
       </div>
       {marquee ? (
-        <div className="position-relative marquee-container mb-8">
+        <div className="position-relative marquee-container mb-2">
           <div className="marquee d-flex justify-content-around">
             {marquee?.map((item: any) => (
               <span key={item?.marqueeText}>{item?.marqueeText}</span>
@@ -237,6 +237,7 @@ export const Header = () => {
           </div>
         </div>
       ) : null}
+      <NavButtons data={fieldName} />
     </>
   );
 };
