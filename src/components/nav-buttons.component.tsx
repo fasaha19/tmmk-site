@@ -10,7 +10,6 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
     (async () => {
       const result = await fetchData();
       setButtons(result?.data?.data);
-      console.log(buttons);
     })();
   }, [buttons]);
   const fetchData = async () => {
@@ -18,7 +17,7 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
     return await service.getRequest(AppConfig.routes.navButtons);
   };
   return (
-    <div className="flex align-middle justify-center py-2">
+    <div className="flex align-middle md:justify-center sm:justify-start py-2 flex-wrap">
       {buttons.map((item: any) => (
         <span className="mx-[4rem] my-[1rem]" key={item?.id}>
           <Link

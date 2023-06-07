@@ -7,7 +7,6 @@ import ListCard from "@/components/listCard.component";
 
 const Administration = () => {
   let [administration, setAboutUs] = useState([]);
-  const hostUrl = AppConfig.host;
   useEffect(() => {
     (async () => {
       const result = await fetchData();
