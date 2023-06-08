@@ -97,6 +97,7 @@ export const Header = () => {
                 className="toggle text-2xl capitalize"
               >
                 {item.name}
+                {item?.children ? <FaCaretDown className="inline-block" /> : ""}
               </label>
               <Link href={item.route}>
                 {" "}

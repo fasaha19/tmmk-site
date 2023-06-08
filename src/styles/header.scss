@@ -136,6 +136,26 @@ nav ul ul li {
   position: relative;
 }
 
+nav ul ul {
+  overflow-y: scroll;
+  max-height: 400px;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+  }
+}
+
 /* Second, Third and more Tiers	
  * We move the 2nd and 3rd etc tier dropdowns to the left
  * by the amount of the width of the first tier.
