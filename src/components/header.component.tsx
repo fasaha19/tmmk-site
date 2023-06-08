@@ -2,8 +2,8 @@ import { AppConfig } from "@/app.config";
 import NavButtons from "@/components/nav-buttons.component";
 import RequestServices from "@/services/requests.services";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { FaCaretDown } from "react-icons/fa";
 
 export const Header = () => {
   const fieldNameUrl = AppConfig.fieldName;
@@ -11,6 +11,7 @@ export const Header = () => {
   const [headerImg, setHeaderImg] = useState<any>("");
   const [marquee, setMarquee] = useState<any>([]);
   const [adminData, setAdminData] = useState([]);
+  const [wingData, setWingData] = useState([]);
 
   const menus = [
     { id: "1", route: "/", name: fieldName?.home },
@@ -22,7 +23,12 @@ export const Header = () => {
       name: fieldName?.administration,
       children: adminData,
     },
-    { id: "5", route: "/wing", name: fieldName?.wing },
+    {
+      id: "5",
+      route: "/wing",
+      name: fieldName?.wing,
+      children: wingData,
+    },
     { id: "6", route: "/allBlog/acheivements", name: fieldName?.acheivements },
     { id: "7", route: "/allBlog/services", name: fieldName?.services },
   ];
@@ -38,7 +44,8 @@ export const Header = () => {
       setMarquee(marqueeData?.data?.data[0]?.attributes?.marqueeText);
       const adminDataRes = await fetchAdminData();
       setAdminData(adminDataRes?.data.data);
-      console.log(adminData);
+      const wingDataRes = await fetchWingData();
+      setWingData(wingDataRes?.data.data);
     })();
   }, []);
   const fetchData = async () => {
@@ -59,9 +66,12 @@ export const Header = () => {
     return await service.getRequest(AppConfig.routes.administration);
   };
 
-  const redirect = (url: any) => {
-    console.log("S");
+  const fetchWingData = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.wing);
+  };
 
+  const redirect = (url: any) => {
     window.open(url, "_blank", "noreferrer");
   };
 
@@ -88,7 +98,11 @@ export const Header = () => {
               >
                 {item.name}
               </label>
-              <Link href={item.route}> {item.name}</Link>
+              <Link href={item.route}>
+                {" "}
+                {item.name}{" "}
+                {item?.children ? <FaCaretDown className="inline-block" /> : ""}
+              </Link>
 
               {item?.children ? (
                 <>
