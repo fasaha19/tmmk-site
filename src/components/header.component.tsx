@@ -3,7 +3,7 @@ import NavButtons from "@/components/nav-buttons.component";
 import RequestServices from "@/services/requests.services";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaCaretDown } from "react-icons/fa";
+import { FaCaretDown, FaHamburger, FaRegMinusSquare } from "react-icons/fa";
 
 export const Header = () => {
   const fieldNameUrl = AppConfig.fieldName;
@@ -86,7 +86,7 @@ export const Header = () => {
       </nav>
       <nav>
         <label htmlFor="drop" className="toggle">
-          Menus
+          <FaRegMinusSquare />
         </label>
         <input type="checkbox" id="drop" />
         <ul className="menu">
@@ -124,41 +124,6 @@ export const Header = () => {
               )}
             </li>
           ))}
-          <li>
-            {/* <!-- First Tier Drop Down --> */}
-            <label htmlFor="drop-1" className="toggle">
-              WordPress +
-            </label>
-            <a href="#">WordPress</a>
-            <input type="checkbox" id="drop-1" />
-            <ul>
-              <li>
-                <a href="#">Themes and stuff</a>
-              </li>
-              <li>
-                <a href="#">Plugins</a>
-              </li>
-              <li>
-                <a href="#">Tutorials</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            {/* <!-- First Tier Drop Down --> */}
-            <label htmlFor="drop-2" className="toggle">
-              Web Design +
-            </label>
-            <a href="#">Web Design</a>
-            <input type="checkbox" id="drop-2" />
-            <ul>
-              <li>
-                <a href="#">Resources</a>
-              </li>
-              <li>
-                <a href="#">Links</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       {marquee ? (
