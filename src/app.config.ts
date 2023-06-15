@@ -34,6 +34,7 @@ const AppConfig: any = {
     administration: "administrations?populate=*",
     wing: "wings?populate=*",
     marquees: "marquees?populate=*",
+    verticalMarquees: "vertical-marquees?populate=*",
     navButtons: "nav-buttons?populate=*"
   },
   ssgFetchBlogUrl: "blogs?populate=*",

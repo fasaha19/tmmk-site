@@ -12,6 +12,7 @@ export const Home = () => {
   const [featuredVideo, setFeaturedVideo] = useState([]);
   const [pressRelease, setPressRelease] = useState([]);
   const [announcements, setAnnouncements] = useState<any>();
+  const [marquee, setMarquee] = useState<any>([]);
 
   const fetchBlogData = async () => {
     const service = new RequestServices();
@@ -34,6 +35,10 @@ export const Home = () => {
     return await service.getRequest(fieldNameUrl);
   };
 
+  const fetchMarquee = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.verticalMarquees);
+  };
   const fieldNameUrl = AppConfig.fieldName;
   const [fieldName, setFieldName] = useState<any>([]);
 
@@ -53,18 +58,34 @@ export const Home = () => {
 
       const fetchField = await fetchFields();
       setFieldName(fetchField?.data.data[0]["attributes"]["home"]);
+
+      const marqueeData = await fetchMarquee();
+      setMarquee(marqueeData?.data?.data[0]?.attributes?.verticalmarquee);
     })();
-  }, [fieldName]);
+  }, [fieldName, marquee]);
 
   return (
     <>
       <Layout>
-        <section>
+        <section className="grid grid-auto-fit-xs gap-4 mt-4">
           <div className="w-full h-[28rem] animate">
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/QPKwJ-1YABc"
             ></iframe>
+          </div>
+          <div className="w-full h-[28rem] bg-zinc-100">
+            <div className="vertical-marquee h-full">
+              <ul className="vertical-marquee-inner h-full" aria-hidden="true">
+                {marquee ? (
+                  <>
+                    {marquee?.map((item: any) => (
+                      <li key={item?.marqueeText}>{item?.marqueeText}</li>
+                    ))}
+                  </>
+                ) : null}
+              </ul>
+            </div>
           </div>
         </section>
 

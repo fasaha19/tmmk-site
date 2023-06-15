@@ -19,3 +19,26 @@
     transform: scale(0.8);
   }
 }
+
+.vertical-marquee {
+  position: relative;
+  overflow: hidden;
+  .vertical-marquee-inner {
+    position: relative;
+    animation: marquee 15s linear infinite;
+    li {
+      padding: 1rem 2rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
