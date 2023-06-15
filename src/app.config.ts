@@ -35,7 +35,8 @@ const AppConfig: any = {
     wing: "wings?populate=*",
     marquees: "marquees?populate=*",
     verticalMarquees: "vertical-marquees?populate=*",
-    navButtons: "nav-buttons?populate=*"
+    navButtons: "nav-buttons?populate=*",
+    profVideo: "prof-video?populate=*",
   },
   ssgFetchBlogUrl: "blogs?populate=*",
   siteUrl: "http://tmmk.info:3000",

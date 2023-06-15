@@ -13,6 +13,7 @@ export const Home = () => {
   const [pressRelease, setPressRelease] = useState([]);
   const [announcements, setAnnouncements] = useState<any>();
   const [marquee, setMarquee] = useState<any>([]);
+  const [profVideo, setProfVideo] = useState<any>("");
 
   const fetchBlogData = async () => {
     const service = new RequestServices();
@@ -39,6 +40,11 @@ export const Home = () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.verticalMarquees);
   };
+
+  const fetchProfVideoLink = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(AppConfig.routes.profVideo);
+  };
   const fieldNameUrl = AppConfig.fieldName;
   const [fieldName, setFieldName] = useState<any>([]);
 
@@ -61,18 +67,19 @@ export const Home = () => {
 
       const marqueeData = await fetchMarquee();
       setMarquee(marqueeData?.data?.data[0]?.attributes?.verticalmarquee);
+
+      const profVideoLink = await fetchProfVideoLink();
+      setProfVideo(profVideoLink?.data?.data?.attributes);
+      console.log(profVideo);
     })();
-  }, [fieldName, marquee]);
+  }, [fieldName]);
 
   return (
     <>
       <Layout>
         <section className="grid grid-auto-fit-xs gap-4 mt-4">
           <div className="w-full h-[28rem] animate">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/QPKwJ-1YABc"
-            ></iframe>
+            <iframe className="w-full h-full" src={profVideo?.link}></iframe>
           </div>
           <div className="w-full h-[28rem] bg-zinc-100">
             <div className="vertical-marquee h-full">
