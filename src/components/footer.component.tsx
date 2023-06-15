@@ -59,6 +59,10 @@ export const Footer = () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.wing);
   };
+
+  const redirect = (url: any) => {
+    window.open(url, "_blank", "noreferrer");
+  };
   return (
     <>
       <footer className="text-gray-600 body-font bg-black mt-12">
@@ -81,7 +85,11 @@ export const Footer = () => {
               </h2>
               <nav className="list-none flex gap-3 bg-black flex-col flex-wrap max-h-60 mb-10">
                 {menus.map((item) => (
-                  <li className="bg-black" key={item?.id}>
+                  <li
+                    className="bg-black"
+                    key={item?.id}
+                    onClick={() => redirect(item?.route)}
+                  >
                     <a className="text-gray-600 hover:text-gray-800 px-0">
                       {item?.name ?? ""}
                     </a>
