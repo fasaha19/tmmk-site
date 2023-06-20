@@ -3,7 +3,7 @@ import NavButtons from "@/components/nav-buttons.component";
 import RequestServices from "@/services/requests.services";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaCaretDown, FaHamburger, FaRegMinusSquare } from "react-icons/fa";
+import { FaCaretDown, FaRegMinusSquare } from "react-icons/fa";
 
 export const Header = () => {
   const fieldNameUrl = AppConfig.fieldName;

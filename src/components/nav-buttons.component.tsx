@@ -11,6 +11,7 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
       const result = await fetchData();
       setButtons(result?.data?.data);
     })();
+    console.log(buttons);
   }, [buttons]);
   const fetchData = async () => {
     const service = new RequestServices();
@@ -24,9 +25,20 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
             target={"_blank"}
             href={"https://www.tmmk.info/donation/"}
             style={{ background: item?.attributes?.color }}
-            className={`text-1xl  text-white stroke-black  animation-pulse font-bold py-2 px-4 rounded`}
+            className={`text-1xl   text-white stroke-black  animation-pulse font-bold py-2 px-4 rounded`}
           >
-            {item?.attributes?.text}
+            <button>
+              {item?.attributes?.icon ? (
+                <img
+                  src={`${AppConfig.host}${item?.attributes?.icon?.data?.attributes?.url}`}
+                  alt="icon"
+                  className="inline-flex h-[30px] w-[30px] mb-2"
+                />
+              ) : (
+                <></>
+              )}
+              <span className="ml-2">{item?.attributes?.text}</span>
+            </button>
           </Link>
         </span>
       ))}

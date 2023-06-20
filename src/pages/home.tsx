@@ -70,7 +70,6 @@ export const Home = () => {
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
-      console.log(profVideo);
     })();
   }, [fieldName]);
 
