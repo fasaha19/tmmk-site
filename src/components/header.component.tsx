@@ -84,6 +84,15 @@ export const Header = () => {
           className="h-[8rem] w-full mx-auto object-cover"
         />
       </nav>
+      {marquee ? (
+        <div className="position-relative marquee-container">
+          <div className="marquee d-flex justify-content-around">
+            {marquee?.map((item: any) => (
+              <span key={item?.marqueeText}>{item?.marqueeText}</span>
+            ))}
+          </div>
+        </div>
+      ) : null}
       <nav>
         <label htmlFor="drop" className="toggle">
           <FaRegMinusSquare />
@@ -126,15 +135,7 @@ export const Header = () => {
           ))}
         </ul>
       </nav>
-      {marquee ? (
-        <div className="position-relative marquee-container mb-2">
-          <div className="marquee d-flex justify-content-around">
-            {marquee?.map((item: any) => (
-              <span key={item?.marqueeText}>{item?.marqueeText}</span>
-            ))}
-          </div>
-        </div>
-      ) : null}
+
       <NavButtons data={fieldName} />
     </>
   );

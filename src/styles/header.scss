@@ -1,9 +1,9 @@
 .marquee-container {
-  height: 30px;
+  height: 45px;
   overflow: hidden;
-  line-height: 30px;
+  line-height: 35px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.92);
+  background-color: rgb(0, 5, 26);
   color: white;
   .marquee {
     left: 100%;
@@ -19,6 +19,7 @@
   }
   span {
     padding-left: 8em;
+    font-size: 1.2em;
     font-weight: 600;
   }
 }
