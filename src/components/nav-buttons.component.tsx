@@ -17,7 +17,7 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
     return await service.getRequest(AppConfig.routes.navButtons);
   };
   return (
-    <div className="flex align-middle md:justify-center sm:justify-start py-2 flex-wrap">
+    <div className="flex align-middle  justify-center py-2 flex-wrap">
       {buttons.map((item: any) => (
         <span className="mx-[4rem] my-[1rem]" key={item?.id}>
           <Link
@@ -36,7 +36,9 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
               ) : (
                 <></>
               )}
-              <span className="ml-2">{item?.attributes?.text}</span>
+              <span className="ml-2 hidden sm:inline-flex">
+                {item?.attributes?.text}
+              </span>
             </button>
           </Link>
         </span>

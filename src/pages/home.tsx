@@ -96,7 +96,7 @@ export const Home = () => {
         </section>
 
         {/* blogs */}
-        <div className="flex  mt-16 items-end justify-between">
+        <div className="flex  mt-16 items-end justify-between flex-wrap">
           <h1>{fieldName?.["Featured blogs"]}</h1>
           <Link href={`allBlog/blog`}>
             <Button name={fieldName?.["View all"]} />
@@ -142,7 +142,7 @@ export const Home = () => {
         <section className="mt-16">
           <div className="grid grid-auto-fit gap-8">
             <div className="flex flex-col">
-              <div className="flex items-end justify-between">
+              <div className="flex items-end justify-between flex-wrap">
                 <h1>{fieldName?.["pressRelease"]}</h1>
                 <Link href={`allBlog/pressRelease`}>
                   <Button name={fieldName?.["View all"]} />
