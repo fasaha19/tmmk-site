@@ -81,7 +81,7 @@ export const Header = () => {
         <img
           src={`${AppConfig.host + headerImg}`}
           alt=""
-          className="h-[8rem] w-full mx-auto object-cover"
+          className="h-[8rem] w-full mx-autor"
         />
       </nav>
       {marquee ? (
