@@ -37,6 +37,7 @@ const AppConfig: any = {
     verticalMarquees: "vertical-marquees?populate=*",
     navButtons: "nav-buttons?populate=*",
     profVideo: "prof-video?populate=*",
+    sliders: "sliders?populate=*",
   },
   ssgFetchBlogUrl: "blogs?populate=*",
   siteUrl: "http://tmmk.info:3000",

@@ -6,13 +6,21 @@ import RequestServices from "@/services/requests.services";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { EffectFade, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 export const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [featuredVideo, setFeaturedVideo] = useState([]);
   const [pressRelease, setPressRelease] = useState([]);
   const [announcements, setAnnouncements] = useState<any>();
-  const [marquee, setMarquee] = useState<any>([]);
+  const [sliders, setSlider] = useState<any>([]);
   const [profVideo, setProfVideo] = useState<any>("");
 
   const fetchBlogData = async () => {
@@ -36,9 +44,9 @@ export const Home = () => {
     return await service.getRequest(fieldNameUrl);
   };
 
-  const fetchMarquee = async () => {
+  const fetchSliders = async () => {
     const service = new RequestServices();
-    return await service.getRequest(AppConfig.routes.verticalMarquees);
+    return await service.getRequest(AppConfig.routes.sliders);
   };
 
   const fetchProfVideoLink = async () => {
@@ -65,8 +73,9 @@ export const Home = () => {
       const fetchField = await fetchFields();
       setFieldName(fetchField?.data.data[0]["attributes"]["home"]);
 
-      const marqueeData = await fetchMarquee();
-      setMarquee(marqueeData?.data?.data[0]?.attributes?.verticalmarquee);
+      const sliderData = await fetchSliders();
+      setSlider(sliderData?.data?.data);
+      console.log(sliders);
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
@@ -77,21 +86,32 @@ export const Home = () => {
     <>
       <Layout>
         <section className="grid grid-auto-fit-xs gap-4 mt-4">
+          <div className="w-full h-[28rem] bg-zinc-100">
+            <Swiper
+              spaceBetween={30}
+              effect={"fade"}
+              navigation={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[EffectFade, Navigation, Pagination]}
+              className="mySwiper"
+            >
+              {sliders.map((slider: any) => (
+                <SwiperSlide key={slider?.id}>
+                  <img
+                    className="object-cover h-full"
+                    src={
+                      AppConfig.host +
+                      slider?.attributes?.sliderMedia?.data?.attributes?.url
+                    }
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
           <div className="w-full h-[28rem] animate">
             <iframe className="w-full h-full" src={profVideo?.link}></iframe>
-          </div>
-          <div className="w-full h-[28rem] bg-zinc-100">
-            <div className="vertical-marquee h-full">
-              <ul className="vertical-marquee-inner h-full" aria-hidden="true">
-                {marquee ? (
-                  <>
-                    {marquee?.map((item: any) => (
-                      <li key={item?.marqueeText}>{item?.marqueeText}</li>
-                    ))}
-                  </>
-                ) : null}
-              </ul>
-            </div>
           </div>
         </section>
 

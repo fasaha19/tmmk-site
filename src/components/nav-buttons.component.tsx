@@ -18,7 +18,7 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
   };
   return (
     <div className="flex align-middle  justify-center py-2 flex-wrap">
-      {buttons.map((item: any) => (
+      {buttons?.map((item: any) => (
         <span className="mx-[4rem] my-[1rem]" key={item?.id}>
           <Link
             target={"_blank"}

@@ -28,6 +28,7 @@
     "remark-gfm": "^3.0.1",
     "sass": "^1.59.3",
     "sharp": "^0.31.3",
+    "swiper": "^10.0.4",
     "typescript": "5.0.2"
   },
   "devDependencies": {
