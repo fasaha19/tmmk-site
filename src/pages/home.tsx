@@ -75,7 +75,6 @@ export const Home = () => {
 
       const sliderData = await fetchSliders();
       setSlider(sliderData?.data?.data);
-      console.log(sliders);
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
@@ -97,10 +96,10 @@ export const Home = () => {
               modules={[EffectFade, Navigation, Pagination]}
               className="mySwiper"
             >
-              {sliders.map((slider: any) => (
+              {sliders?.map((slider: any) => (
                 <SwiperSlide key={slider?.id}>
                   <img
-                    className="object-cover h-full"
+                    className="object-cover h-full z-0"
                     src={
                       AppConfig.host +
                       slider?.attributes?.sliderMedia?.data?.attributes?.url
