@@ -75,6 +75,7 @@ export const Home = () => {
 
       const sliderData = await fetchSliders();
       setSlider(sliderData?.data?.data);
+      console.log(sliders);
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
@@ -96,10 +97,10 @@ export const Home = () => {
               modules={[EffectFade, Navigation, Pagination]}
               className="mySwiper"
             >
-              {sliders?.map((slider: any) => (
+              {sliders.map((slider: any) => (
                 <SwiperSlide key={slider?.id}>
                   <img
-                    className="object-cover h-full z-0"
+                    className="object-cover h-full"
                     src={
                       AppConfig.host +
                       slider?.attributes?.sliderMedia?.data?.attributes?.url
@@ -110,7 +111,10 @@ export const Home = () => {
             </Swiper>
           </div>
           <div className="w-full h-[28rem] animate">
-            <iframe className="w-full h-full" src={profVideo?.link}></iframe>
+            <iframe
+              className="w-full h-full"
+              src={profVideo?.link && ""}
+            ></iframe>
           </div>
         </section>
 
@@ -147,7 +151,7 @@ export const Home = () => {
                   <div key={item?.id}>
                     <iframe
                       className="w-full"
-                      src={item?.attributes?.featuredYoutubeLink}
+                      src={item?.attributes?.featuredYoutubeLink && ""}
                     ></iframe>
                   </div>
                 ))
