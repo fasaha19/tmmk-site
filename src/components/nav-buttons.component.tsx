@@ -11,7 +11,7 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
       const result = await fetchData();
       setButtons(result?.data?.data);
     })();
-  }, [buttons]);
+  }, []);
   const fetchData = async () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.navButtons);

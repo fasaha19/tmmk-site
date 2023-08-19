@@ -13,7 +13,8 @@
   font-family: $font-family-name, $font-generic-name;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }

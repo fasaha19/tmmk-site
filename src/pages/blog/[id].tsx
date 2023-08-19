@@ -15,6 +15,7 @@ import {
   FaWhatsappSquare,
 } from "react-icons/fa";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function BlogDetails() {
   const router = useRouter();
@@ -22,20 +23,31 @@ export default function BlogDetails() {
   const hostUrl = AppConfig.host;
   const shareUrl = AppConfig.siteUrl + router.asPath;
 
-  let [blogData, setBlogData] = useState<any>({});
+  const [blogData, setBlogData] = useState<any>({});
+  const [isFeaturedItem, setIsFeaturedItems] = useState<any>([]);
   useEffect(() => {
     (async () => {
       // const comment = router.query.comment as string;
-      id = router.query.id as string;
+      id = window.location.pathname.split("/")[2];
       const result = await fetchData();
       setBlogData(result?.data.data);
     })();
-  }, [id]);
+  }, []);
+  useEffect(() => {
+    (async () => {
+      const result = await fetchFeaturedItems();
+      setIsFeaturedItems(result?.data?.data);
+    })();
+  }, []);
   const fetchData = async () => {
     const service = new RequestServices();
     return await service.getRequest(
       `${AppConfig.routes.blog.blogById}${id}?populate=*`
     );
+  };
+  const fetchFeaturedItems = async () => {
+    const service = new RequestServices();
+    return await service.getRequest(`${AppConfig.routes.blog.featuredBlog}`);
   };
   return (
     <>
@@ -142,34 +154,45 @@ export default function BlogDetails() {
                 </div>
               </div>
               <div className="lg:col-span-4 md:col-span-12">
+                <h6 className="mb-4">Featured posts</h6>
                 <div className="h-full">
-                  <div className="p-4 md:w-full">
-                    <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-                      <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-                        <svg
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          className="w-10 h-10"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                          <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                      </div>
-                      <div className="flex-grow">
-                        <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                          The Catalyzer
-                        </h2>
-                        <p className="leading-relaxed text-base">
-                          Blue bottle crucifix vinyl post-ironic four dollar
-                          toast vegan taxidermy. Gastropub indxgo juice poutine.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  {isFeaturedItem.length > 0 ? (
+                    isFeaturedItem?.map((blog: any) => (
+                      <Link
+                        href={`/blog/${blog.id}`}
+                        target="_blank"
+                        key={blog.id}
+                      >
+                        {" "}
+                        <div className="md:w-full h-52">
+                          <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-4 sm:flex-row flex-col mb-4 shadow-md">
+                            <div className="w-32 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-cente flex-shrink-0">
+                              <img
+                                className="h-full object-cover object-center w-full rounded-md"
+                                src={
+                                  blog.attributes?.image
+                                    ? hostUrl +
+                                      blog.attributes.image.data.attributes.url
+                                    : "https://dummyimage.com/720x400"
+                                }
+                                alt="blog"
+                              />
+                            </div>
+                            <div className="flex-grow" key={blog?.id}>
+                              <h2 className="text-gray-900 text-lg title-font font-medium mb-3 line-clamp-2">
+                                {blog.attributes.title}
+                              </h2>
+                              <p className="leading-relaxed mb-3 line-clamp-3">
+                                {blog.attributes.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>

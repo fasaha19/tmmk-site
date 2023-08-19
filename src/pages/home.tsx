@@ -61,6 +61,9 @@ export const Home = () => {
       const result = await fetchBlogData();
       setBlogs(result?.data.data);
 
+      const fetchField = await fetchFields();
+      setFieldName(fetchField?.data.data[0]["attributes"]["home"]);
+
       const featuredVideos = await fetchFeaturedVideo();
       setFeaturedVideo(featuredVideos?.data.data);
 
@@ -70,17 +73,13 @@ export const Home = () => {
       const announcementsData = await fetchAnnouncements();
       setAnnouncements(announcementsData?.data.data);
 
-      const fetchField = await fetchFields();
-      setFieldName(fetchField?.data.data[0]["attributes"]["home"]);
-
       const sliderData = await fetchSliders();
       setSlider(sliderData?.data?.data);
-      console.log(sliders);
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
     })();
-  }, [fieldName]);
+  }, []);
 
   return (
     <>
@@ -111,10 +110,11 @@ export const Home = () => {
             </Swiper>
           </div>
           <div className="w-full h-[28rem] animate">
-            <iframe
-              className="w-full h-full"
-              src={profVideo?.link && ""}
-            ></iframe>
+            {profVideo ? (
+              <iframe className="w-full h-full" src={profVideo.link}></iframe>
+            ) : (
+              <></>
+            )}
           </div>
         </section>
 
