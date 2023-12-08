@@ -11,15 +11,15 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
       const result = await fetchData();
       setButtons(result?.data?.data);
     })();
-  }, []);
+  }, [buttons]);
   const fetchData = async () => {
     const service = new RequestServices();
     return await service.getRequest(AppConfig.routes.navButtons);
   };
   return (
-    <div className="flex align-middle  justify-center py-2 flex-wrap">
+    <div className="flex align-middle justify-center py-6 flex-wrap">
       {buttons?.map((item: any) => (
-        <span className="mx-[4rem] my-[1rem]" key={item?.id}>
+        <span className="md:mx-[2rem] md:my-[1rem] mx-1 " key={item?.id}>
           <Link
             target={"_blank"}
             href={"https://www.tmmk.info/donation/"}

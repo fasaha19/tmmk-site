@@ -70,7 +70,7 @@ export default function BlogDetails() {
         <section className="text-gray-600 body-font">
           <div className="container py-24">
             <div className="grid grid-cols-12 gap-4">
-              <div className="lg:col-span-8 md:col-span-12">
+              <div className="col-span-12 md:col-span-8">
                 <h1> {blogData?.attributes?.title}</h1>
                 <div className="rounded-lg h-64 object-fill overflow-hidden">
                   <img
@@ -153,7 +153,7 @@ export default function BlogDetails() {
                   </div>
                 </div>
               </div>
-              <div className="lg:col-span-4 md:col-span-12">
+              <div className="col-span-12 md:col-span-4">
                 <h6 className="mb-4">Featured posts</h6>
                 <div className="h-full">
                   {isFeaturedItem.length > 0 ? (
@@ -164,7 +164,7 @@ export default function BlogDetails() {
                         key={blog.id}
                       >
                         {" "}
-                        <div className="md:w-full h-52">
+                        <div className="md:w-full ">
                           <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-4 sm:flex-row flex-col mb-4 shadow-md">
                             <div className="w-32 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-cente flex-shrink-0">
                               <img
