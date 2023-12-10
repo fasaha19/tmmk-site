@@ -15,9 +15,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require("@shrutibalasa/tailwind-grid-auto-fit"),
-    require("@tailwindcss/line-clamp"),
-  ],
+  plugins: [require("@shrutibalasa/tailwind-grid-auto-fit")],
 };
 export default config;

@@ -1,7 +1,8 @@
-import Image from 'next/image'
+"use client";
+import { useGlobalContext } from "@context/context";
 
 export default function Home() {
-  return (
-    <></>
-  )
+  const { data } = useGlobalContext();
+
+  return <div></div>;
 }
