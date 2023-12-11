@@ -4,20 +4,16 @@ import { AppConfig } from "@config/config";
 import RequestServices from "@services/apis_service";
 import { createContext, useContext, useState, useEffect } from "react";
 
-type DataType = {
-  data: any;
-};
-
 interface ContextProps {
-  data: DataType[];
+  fieldNames: any[];
 }
 
 const GlobalContext = createContext<ContextProps>({
-  data: [],
+  fieldNames: [],
 });
 
 export const GlobalContextProvider = ({ children }: any) => {
-  const [fieldNames, setFieldNames] = useState<[] | DataType[]>([]);
+  const [fieldNames, setFieldNames] = useState<[] | any[]>([]);
   useEffect(() => {
     const appendData = async () => {
       const service = new RequestServices();
@@ -28,7 +24,7 @@ export const GlobalContextProvider = ({ children }: any) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ data: fieldNames }}>
+    <GlobalContext.Provider value={{ fieldNames: fieldNames }}>
       {children}
     </GlobalContext.Provider>
   );

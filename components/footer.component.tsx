@@ -1,33 +1,34 @@
 import { AppConfig } from "@config/config";
+import { useGlobalContext } from "@context/context";
 import RequestServices from "@services/apis_service";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const Footer = () => {
   const [socialMediaLinks, setSocialMediaLinks] = useState<any>();
-  const fieldNameUrl = AppConfig.fieldName;
-  const [fieldName, setFieldName] = useState<any>([]);
   const [adminData, setAdminData] = useState([]);
   const [wingData, setWingData] = useState([]);
+  const { fieldNames }: any = useGlobalContext();
+  console.log(fieldNames);
 
   const menus = [
-    { id: "1", route: "/", name: fieldName?.home },
-    { id: "2", route: "/about", name: fieldName?.about },
-    { id: "3", route: "/pressrelease", name: fieldName?.pressRelease },
+    { id: "1", route: "/", name: fieldNames?.home },
+    { id: "2", route: "/about", name: fieldNames?.about },
+    { id: "3", route: "/pressrelease", name: fieldNames?.pressRelease },
     {
       id: "4",
       route: "/administration",
-      name: fieldName?.administration,
+      name: fieldNames?.administration,
       children: adminData,
     },
     {
       id: "5",
       route: "/wing",
-      name: fieldName?.wing,
+      name: fieldNames?.wing,
       children: wingData,
     },
-    { id: "6", route: "/allBlog/acheivements", name: fieldName?.acheivements },
-    { id: "7", route: "/allBlog/services", name: fieldName?.services },
+    { id: "6", route: "/allBlog/acheivements", name: fieldNames?.acheivements },
+    { id: "7", route: "/allBlog/services", name: fieldNames?.services },
   ];
 
   const service = new RequestServices();
@@ -36,8 +37,6 @@ export const Footer = () => {
     (async () => {
       const result = await fetchBlogData();
       setSocialMediaLinks(result?.data?.data?.attributes);
-      const fields = await fetchData();
-      setFieldName(fields?.data.data[0]["attributes"]["home"]);
       const adminDataRes = await fetchAdminData();
       setAdminData(adminDataRes?.data.data);
       const wingDataRes = await fetchWingData();
@@ -47,9 +46,6 @@ export const Footer = () => {
 
   const fetchBlogData = async () => {
     return await service.getRequest(AppConfig.routes.socialMediaLink);
-  };
-  const fetchData = async () => {
-    return await service.getRequest(fieldNameUrl);
   };
 
   const fetchAdminData = async () => {
