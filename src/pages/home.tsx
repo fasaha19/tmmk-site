@@ -129,14 +129,16 @@ export const Home = () => {
 
         <section className="grid grid-auto-fit-xs gap-4 mt-4">
           {blogs?.length > 0
-            ? blogs.map((item: any) => (
-                <Card
-                  blogData={item.attributes}
-                  blogId={item.id}
-                  key={item.id}
-                  blogType={item.attributes?.blogType}
-                />
-              ))
+            ? blogs
+                .map((item: any) => (
+                  <Card
+                    blogData={item.attributes}
+                    blogId={item.id}
+                    key={item.id}
+                    blogType={item.attributes?.blogType}
+                  />
+                ))
+                .reverse()
             : [1, 2, 3].map((i) => (
                 <div className="animate h-[20rem]" key={i}></div>
               ))}
