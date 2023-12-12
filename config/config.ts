@@ -9,7 +9,7 @@ const AppConfig: any = {
         "blogs?populate=*&filters[$and][0][blogType][$eq]=blog&filters[$and][1][isFeatured][$eq]=true",
       blogById: "blogs/",
       top4blog:
-        "blogs?populate=*&filters[$and][0][blogType][$eq]=blog&pagination[page]=1&pagination[pageSize]=4",
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=blog&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:DESC",
     },
     featuredVideo:
       "home-featured-videos?populate=*&pagination[page]=1&pagination[pageSize]=4",
@@ -17,19 +17,19 @@ const AppConfig: any = {
       allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease",
       blogById: "blogs/",
       top4blog:
-        "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&pagination[page]=1&pagination[pageSize]=4",
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=pressRelease&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:ASC",
     },
     acheivements: {
       allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=acheivements",
       blogById: "blogs/",
       top4blog:
-        "blogs?populate=*&filters[$and][0][blogType][$eq]=acheivements&pagination[page]=1&pagination[pageSize]=4",
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=acheivements&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:ASC",
     },
     services: {
       allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=services",
       blogById: "blogs/",
       top4blog:
-        "blogs?populate=*&filters[$and][0][blogType][$eq]=services&pagination[page]=1&pagination[pageSize]=4",
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=services&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:ASC",
     },
     socialMediaLink: "social-medial-link?populate=*",
     headersImage: "header-banner-image?populate=*",
