@@ -19,7 +19,7 @@ import "swiper/css/scrollbar";
 import { AppConfig } from "@config/config";
 import RequestServices from "@services/apis_service";
 
-export const Home = () => {
+function Home() {
   const [blogs, setBlogs] = useState([]);
   const [featuredVideo, setFeaturedVideo] = useState([]);
   const [pressRelease, setPressRelease] = useState([]);
@@ -198,6 +198,6 @@ export const Home = () => {
       </Layout>
     </>
   );
-};
+}
 
 export default Home;
