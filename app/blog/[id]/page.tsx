@@ -1,5 +1,6 @@
+"use client";
 import { Layout } from "@/components/layout.component";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import {
@@ -17,20 +18,22 @@ import Link from "next/link";
 import { AppConfig } from "@config/config";
 import RequestServices from "@services/apis_service";
 
-export default function BlogDetails() {
+export default function BlogDetails({ params }: any) {
   const service = new RequestServices();
 
   const router = useRouter();
-  let id: any;
+  let id: any = params["id"];
   const hostUrl = AppConfig.host;
-  const shareUrl = AppConfig.siteUrl + router.asPath;
+  const shareUrl = "";
+  // const shareUrl = AppConfig.siteUrl + router.;
 
   const [blogData, setBlogData] = useState<any>({});
   const [isFeaturedItem, setIsFeaturedItems] = useState<any>([]);
+
   useEffect(() => {
     (async () => {
       // const comment = router.query.comment as string;
-      id = window.location.pathname.split("/")[2];
+      console.log("+====");
       const result = await fetchData();
       setBlogData(result?.data.data);
     })();

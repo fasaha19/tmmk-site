@@ -6,23 +6,21 @@ import { Card } from "@/components/card.component";
 import RequestServices from "@services/apis_service";
 import { AppConfig } from "@config/config";
 
-export default function BlogType() {
-  const router = useSearchParams();
+export default function BlogType({ params }: any) {
   let blogType: any;
 
   let [blogData, setBlogData] = useState<any>([]);
   const service = new RequestServices();
 
+  blogType = params["blogId"];
+
   useEffect(() => {
     (async () => {
       // const comment = router.query.comment as string;
-      blogType = router.get("blogId");
-      console.log(router);
-
       const result = await fetchData();
       setBlogData(result?.data?.data);
     })();
-  }, [blogType]);
+  }, []);
   const fetchData = async () => {
     return await service.getRequest(
       `${AppConfig.routes?.[blogType]?.allBlogs}&pagination[page]=1&pagination[pageSize]=100`

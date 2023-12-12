@@ -9,7 +9,6 @@ export const Footer = () => {
   const [adminData, setAdminData] = useState([]);
   const [wingData, setWingData] = useState([]);
   const { fieldNames }: any = useGlobalContext();
-  console.log(fieldNames);
 
   const menus = [
     { id: "1", route: "/", name: fieldNames?.home },

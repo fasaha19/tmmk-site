@@ -6,7 +6,7 @@ const AppConfig: any = {
     blog: {
       allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=blog",
       featuredBlog:
-        "blogs?populate=*&filters[$and][0][blogType][$eq]=blog&filters[$and][1][isFeatured][$eq]=true",
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=blog&filters[$and][1][isFeatured][$eq]=true&pagination[page]=1&pagination[pageSize]=5&sort=updatedAt:DESC",
       blogById: "blogs/",
       top4blog:
         "blogs?populate=*&filters[$and][0][blogType][$eq]=blog&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:DESC",
