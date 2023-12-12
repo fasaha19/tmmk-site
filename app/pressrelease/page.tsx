@@ -26,7 +26,6 @@ const PressRelease = () => {
     (async () => {
       const result = await fetchEvent();
       setRelease(result?.data.data);
-      console.log(release);
 
       const media = await fetchEventMedia();
       setBanner(
@@ -34,7 +33,6 @@ const PressRelease = () => {
           .url
       );
       setPdf(media?.data.data.attributes.pdf.data.attributes.url);
-      console.log(pdf);
     })();
   }, []);
 

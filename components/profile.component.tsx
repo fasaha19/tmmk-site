@@ -11,7 +11,9 @@ const Profile = ({ profile }: any) => {
           className=" object-cover w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
         />
         <div className="w-1/2">
-          <h1 className="font-extrabold">{profile?.name}</h1>
+          <h1 className="font-extrabold text-ellipsis overflow-hidden">
+            {profile?.name}
+          </h1>
           <h2 className="flex">
             <FaPhone className="p-1 pl-0 " size={30} color="#707070" />{" "}
             {profile?.phoneNo}

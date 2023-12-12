@@ -2,7 +2,6 @@ import { AppConfig } from "@config/config";
 
 const ListCard = ({ data }: any) => {
   let imgUrl = data?.icon?.data?.attributes?.url;
-  console.log(imgUrl);
 
   const fallBackUrl = "https://img.icons8.com/ios-filled/50/external-link.png";
 

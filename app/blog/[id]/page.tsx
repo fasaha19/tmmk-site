@@ -32,8 +32,6 @@ export default function BlogDetails({ params }: any) {
 
   useEffect(() => {
     (async () => {
-      // const comment = router.query.comment as string;
-      console.log("+====");
       const result = await fetchData();
       setBlogData(result?.data.data);
     })();

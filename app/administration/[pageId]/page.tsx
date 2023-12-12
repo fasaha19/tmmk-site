@@ -1,12 +1,12 @@
+"use client";
 import { Layout } from "@/components/layout.component";
 import Profile from "@/components/profile.component";
 import RequestServices from "@services/apis_service";
-import { useRouter } from "next/router";
+
 import { useEffect, useState } from "react";
 
-export default function PageType() {
-  const router = useRouter();
-  let pageId: any;
+export default function PageType({ params }: any) {
+  let pageId = params["pageId"];
 
   let [blogData, setBlogData] = useState<any>([]);
   const service = new RequestServices();
@@ -14,10 +14,8 @@ export default function PageType() {
   useEffect(() => {
     (async () => {
       // const comment = router.query.comment as string;
-      pageId = router.query.pageId as string;
       const result = await fetchData();
       setBlogData(result?.data?.data?.attributes);
-      console.log(blogData);
     })();
   }, [pageId, !blogData ? blogData : null]);
   const fetchData = async () => {

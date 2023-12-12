@@ -1,27 +1,24 @@
+"use client";
 import { Layout } from "@/components/layout.component";
 import Profile from "@/components/profile.component";
 import { AppConfig } from "@config/config";
 import RequestServices from "@services/apis_service";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Timeline } from "react-twitter-widgets";
 
-export default function WingPageType() {
+export default function WingPageType({ params }: any) {
   const service = new RequestServices();
 
-  const router = useRouter();
-  let wingPageId: any;
+  let wingPageId: any = params["wingPageId"];
 
   let [blogData, setBlogData] = useState<any>([]);
 
   useEffect(() => {
     (async () => {
       // const comment = router.query.comment as string;
-      wingPageId = router.query.wingPageId as string;
       const result = await fetchData();
       setBlogData(result?.data?.data?.attributes);
-      console.log(blogData);
     })();
   }, [wingPageId, !blogData ? blogData : null]);
   const fetchData = async () => {

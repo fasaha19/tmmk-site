@@ -14,7 +14,6 @@ const About = () => {
     (async () => {
       const result = await fetchData();
       setAboutUs(result?.data.data);
-      console.log(result?.data.data);
     })();
   }, []);
   const fetchData = async () => {
