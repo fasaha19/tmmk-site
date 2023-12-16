@@ -7,11 +7,10 @@
   color: white;
   .marquee {
     left: 100%;
-    width: 100%;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    animation: marquee 30s linear infinite;
+    animation: marquee 50s linear infinite;
   }
 
   .marquee2 {

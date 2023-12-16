@@ -6,6 +6,7 @@ import RequestServices from "@services/apis_service";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaCaretDown, FaRegMinusSquare } from "react-icons/fa";
+import HorizontalTextMarquee from "./horizontal_marquee.component";
 
 export const Header = () => {
   const [headerImg, setHeaderImg] = useState<any>("");
@@ -41,7 +42,7 @@ export const Header = () => {
         headImg?.data?.data?.attributes?.headerImage?.data?.attributes?.url
       );
       const marqueeData = await fetchMarquee();
-      setMarquee(marqueeData?.data?.data[0]?.attributes?.marqueeText);
+      setMarquee(marqueeData?.data?.data);
       const adminDataRes = await fetchAdminData();
       setAdminData(adminDataRes?.data.data);
       const wingDataRes = await fetchWingData();
@@ -53,7 +54,7 @@ export const Header = () => {
     return await service.getRequest(AppConfig.routes.headersImage);
   };
   const fetchMarquee = async () => {
-    return await service.getRequest(AppConfig.routes.marquees);
+    return await service.getRequest(AppConfig.routes.blog.featuredBlog);
   };
 
   const fetchAdminData = async () => {
@@ -67,7 +68,6 @@ export const Header = () => {
   const redirect = (url: any) => {
     window.open(url, "_blank", "noreferrer");
   };
-
   return (
     <>
       <nav className="w-100">
@@ -77,15 +77,9 @@ export const Header = () => {
           className="h-[8rem] w-full mx-autor"
         />
       </nav>
-      {marquee ? (
-        <div className="position-relative marquee-container">
-          <div className="marquee d-flex justify-content-around">
-            {marquee?.map((item: any) => (
-              <span key={item?.marqueeText}>{item?.marqueeText}</span>
-            ))}
-          </div>
-        </div>
-      ) : null}
+
+      <HorizontalTextMarquee newsItems={marquee} />
+
       <nav>
         <label htmlFor="drop" className="toggle">
           <FaRegMinusSquare />
