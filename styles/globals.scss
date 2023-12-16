@@ -45,3 +45,15 @@ iframe {
   border-radius: 2em;
   font-weight: 600;
 }
+
+.mySwiper{
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: white;
+  }
+
+  .swiper-pagination-bullet{
+    background-color: white;
+  }
+}

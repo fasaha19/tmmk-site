@@ -1,5 +1,6 @@
 import NavButtons from "@/components/nav-buttons.component";
 import { AppConfig } from "@config/config";
+import { useGlobalContext } from "@context/context";
 import RequestServices from "@services/apis_service";
 
 import Link from "next/link";
@@ -7,37 +8,34 @@ import { useEffect, useState } from "react";
 import { FaCaretDown, FaRegMinusSquare } from "react-icons/fa";
 
 export const Header = () => {
-  const fieldNameUrl = AppConfig.fieldName;
-  const [fieldName, setFieldName] = useState<any>([]);
   const [headerImg, setHeaderImg] = useState<any>("");
   const [marquee, setMarquee] = useState<any>([]);
   const [adminData, setAdminData] = useState([]);
   const [wingData, setWingData] = useState([]);
+  const { fieldNames }: any = useGlobalContext();
 
   const menus = [
-    { id: "1", route: "/", name: fieldName?.home },
-    { id: "2", route: "/about", name: fieldName?.about },
-    { id: "3", route: "/pressrelease", name: fieldName?.pressRelease },
+    { id: "1", route: "/", name: fieldNames?.home },
+    { id: "2", route: "/about", name: fieldNames?.about },
+    { id: "3", route: "/pressrelease", name: fieldNames?.pressRelease },
     {
       id: "4",
       route: "/administration",
-      name: fieldName?.administration,
+      name: fieldNames?.administration,
       children: adminData,
     },
     {
       id: "5",
       route: "/wing",
-      name: fieldName?.wing,
+      name: fieldNames?.wing,
       children: wingData,
     },
-    { id: "6", route: "/allBlog/acheivements", name: fieldName?.acheivements },
-    { id: "7", route: "/allBlog/services", name: fieldName?.services },
+    { id: "6", route: "/allBlog/acheivements", name: fieldNames?.acheivements },
+    { id: "7", route: "/allBlog/services", name: fieldNames?.services },
   ];
   const service = new RequestServices();
   useEffect(() => {
     (async () => {
-      const result = await fetchData();
-      setFieldName(result?.data.data[0]["attributes"]["home"]);
       const headImg = await fetchImage();
       setHeaderImg(
         headImg?.data?.data?.attributes?.headerImage?.data?.attributes?.url
@@ -50,9 +48,7 @@ export const Header = () => {
       setWingData(wingDataRes?.data.data);
     })();
   }, []);
-  const fetchData = async () => {
-    return await service.getRequest(fieldNameUrl);
-  };
+
   const fetchImage = async () => {
     return await service.getRequest(AppConfig.routes.headersImage);
   };
@@ -133,7 +129,7 @@ export const Header = () => {
         </ul>
       </nav>
 
-      <NavButtons data={fieldName} />
+      <NavButtons data={fieldNames} />
     </>
   );
 };

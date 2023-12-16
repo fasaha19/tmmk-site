@@ -18,8 +18,11 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { AppConfig } from "@config/config";
 import RequestServices from "@services/apis_service";
+import { useRouter } from "next/navigation";
 
 function Home() {
+  const router = useRouter();
+
   const [blogs, setBlogs] = useState([]);
   const [featuredVideo, setFeaturedVideo] = useState([]);
   const [pressRelease, setPressRelease] = useState([]);
@@ -64,7 +67,8 @@ function Home() {
       setAnnouncements(announcementsData?.data.data);
 
       const sliderData = await fetchSliders();
-      setSlider(sliderData?.data?.data);
+      setSlider(result?.data.data);
+      console.log(result);
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
@@ -74,11 +78,11 @@ function Home() {
   return (
     <>
       <Layout>
-        <section className="grid grid-auto-fit-xs gap-4 mt-4">
-          <div className="w-full h-[28rem] bg-zinc-100">
+        <section className="grid grid-auto-fit-xs gap-4 mt-4 md:h-[22rem]">
+          <div className="w-full  bg-zinc-100">
             <Swiper
               spaceBetween={30}
-              effect={"fade"}
+              effect={"coverflow"}
               navigation={true}
               pagination={{
                 clickable: true,
@@ -87,19 +91,35 @@ function Home() {
               className="mySwiper"
             >
               {sliders.map((slider: any) => (
-                <SwiperSlide key={slider?.id}>
-                  <img
-                    className="object-cover h-full"
-                    src={
-                      AppConfig.host +
-                      slider?.attributes?.sliderMedia?.data?.attributes?.url
-                    }
-                  />
+                <SwiperSlide
+                  onClick={() => {
+                    console.log("cli");
+
+                    router.push(`/blog/${slider?.id}`, { scroll: false });
+                  }}
+                  key={slider?.id}
+                >
+                  <div className="relative">
+                    <img
+                      className="object-cover h-[22rem]"
+                      src={
+                        AppConfig.host +
+                        slider?.attributes?.image?.data?.attributes?.url
+                      }
+                    />
+                    <div className="absolute bottom-0 bg-[#23232378] p-8 w-full">
+                      <div className="flex align-middle justify-center">
+                        <p className="text-white text-ellipsis line-clamp-2">
+                          {slider?.attributes?.title}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
-          <div className="w-full h-[28rem] animate">
+          <div className="w-full animate">
             {profVideo ? (
               <iframe className="w-full h-full" src={profVideo.link}></iframe>
             ) : (
@@ -120,6 +140,7 @@ function Home() {
         <section className="grid grid-auto-fit-xs gap-4 mt-4">
           {blogs?.length > 0
             ? blogs
+                .slice(0, 3)
                 .map((item: any) => (
                   <Card
                     blogData={item.attributes}
@@ -135,8 +156,8 @@ function Home() {
         </section>
 
         {/* video */}
-        <section className="mt-16">
-          <h1>{fieldNames?.["Featured blogs"]}</h1>
+        {/* <section className="mt-16">
+          <h1>{fieldNames?.["Featured video"]}</h1>
           <div className="grid grid-auto-fit-xs gap-4 mt-4">
             {featuredVideo?.length > 0
               ? featuredVideo.map((item: any) => (
@@ -151,7 +172,7 @@ function Home() {
                   <div className="animate h-[10rem]" key={i}></div>
                 ))}
           </div>
-        </section>
+        </section> */}
 
         {/* press release */}
         <section className="mt-16">

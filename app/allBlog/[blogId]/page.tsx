@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/card.component";
 import RequestServices from "@services/apis_service";
 import { AppConfig } from "@config/config";
+import { useGlobalContext } from "@context/context";
 
 export default function BlogType({ params }: any) {
   let blogType: any;
@@ -13,6 +14,7 @@ export default function BlogType({ params }: any) {
   const service = new RequestServices();
 
   blogType = params["blogId"];
+  const { fieldNames }: any = useGlobalContext();
 
   useEffect(() => {
     (async () => {
@@ -30,8 +32,8 @@ export default function BlogType({ params }: any) {
     <>
       <Layout>
         <section>
-          <h1>{blogType}</h1>
-          <section className="grid grid-auto-fit-xs md:grid-cols-4 gap-4 mt-4 ">
+          <h1>{fieldNames[blogType] || "blogs"}</h1>
+          <section className="grid grid-auto-fit-xs md:grid-cols-3 gap-4 mt-4 ">
             {blogData?.length > 0
               ? blogData.map((item: any) => (
                   <Card
