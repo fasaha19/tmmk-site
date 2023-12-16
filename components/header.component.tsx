@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaCaretDown, FaRegMinusSquare } from "react-icons/fa";
 import HorizontalTextMarquee from "./horizontal_marquee.component";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export const Header = () => {
   const [headerImg, setHeaderImg] = useState<any>("");
@@ -34,6 +36,7 @@ export const Header = () => {
     { id: "6", route: "/allBlog/acheivements", name: fieldNames?.acheivements },
     { id: "7", route: "/allBlog/services", name: fieldNames?.services },
   ];
+  const pathname = usePathname();
   const service = new RequestServices();
   useEffect(() => {
     (async () => {
@@ -70,11 +73,20 @@ export const Header = () => {
   };
   return (
     <>
-      <nav className="w-100">
+      <nav className="w-100 md:block hidden">
+        <img
+          width={800}
+          height={50}
+          src={`${AppConfig.host + headerImg}`}
+          alt=""
+          className="h-[8rem] w-full object-fill"
+        />
+      </nav>
+      <nav className="w-100 sm:hidden block">
         <img
           src={`${AppConfig.host + headerImg}`}
           alt=""
-          className="h-[8rem] w-full mx-autor"
+          className="h-[4rem] w-full  object-contain"
         />
       </nav>
 
@@ -95,7 +107,14 @@ export const Header = () => {
                 {item.name}
                 {item?.children ? <FaCaretDown className="inline-block" /> : ""}
               </label>
-              <Link href={item.route}>
+              <Link
+                href={item.route}
+                className={
+                  pathname === item.route
+                    ? "bg-gradient-to-b from-transparent to-[#93939345]"
+                    : ""
+                }
+              >
                 {" "}
                 {item.name}{" "}
                 {item?.children ? <FaCaretDown className="inline-block" /> : ""}

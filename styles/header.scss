@@ -1,25 +1,27 @@
 .marquee-container {
-  height: 45px;
+  height: 30px;
   overflow: hidden;
-  line-height: 35px;
-  width: 100%;
-  background-color: rgb(0, 5, 26);
-  color: white;
+  line-height: 30px;
+
+  background: rgb(14,14,14);
+  background: linear-gradient(4deg, rgba(14,14,14,1) 0%, rgba(71,71,71,1) 36%, rgb(69, 69, 69) 56%, rgb(98, 98, 98) 74%, rgb(69, 69, 69) 87%, rgba(208,208,208,1) 100%);
   .marquee {
+    color: #fff;
+    top: 0;
     left: 100%;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    animation: marquee 50s linear infinite;
+    animation: marquee 30s linear infinite;
   }
+}
 
-  .marquee2 {
-    animation-delay: 15s;
+@keyframes marquee {
+  0% {
+    left: 100%;
   }
-  span {
-    padding-left: 8em;
-    font-size: 1.2em;
-    font-weight: 600;
+  100% {
+    left: -100%
   }
 }
 

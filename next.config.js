@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     unoptimized: true,
-    domains: ["members.tmmk.info", "dummyimage.com"],
+    domains: ["members.tmmk.info", "dummyimage.com", "picsum.photos"],
   },
 };
 module.exports = nextConfig;

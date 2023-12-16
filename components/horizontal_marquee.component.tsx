@@ -6,17 +6,18 @@ const HorizontalTextMarquee = ({ newsItems }: any) => {
   return (
     <>
       {newsItems ? (
-        <div className="position-relative marquee-container">
-          <div className="marquee ">
+        <div className="relative marquee-container">
+          <div className="marquee">
             {newsItems?.map((item: any, idx: any) => (
-              <span
-                key={item?.marqueeText}
+              <div
+                className=""
+                key={item?.id}
                 onClick={() => {
                   router.push(`/blog/${item?.id}`, { scroll: false });
                 }}
               >
                 {idx + 1 + ". " + item?.attributes?.title || ""}
-              </span>
+              </div>
             ))}
           </div>
         </div>

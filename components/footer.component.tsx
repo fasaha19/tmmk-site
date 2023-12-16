@@ -1,6 +1,7 @@
 import { AppConfig } from "@config/config";
 import { useGlobalContext } from "@context/context";
 import RequestServices from "@services/apis_service";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -85,7 +86,7 @@ export const Footer = () => {
         <div className="bg-neutral-900">
           <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col ">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
-              <img
+              <Image
                 src="https://members.tmmk.info/assets/images/flag_tmmk.jpg"
                 height={25}
                 width={25}

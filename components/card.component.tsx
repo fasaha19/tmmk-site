@@ -18,7 +18,7 @@ export const Card = (props: any) => {
         <Image
           width={100}
           height={144}
-          className="lg:h-48 md:h-36 w-full object-cover object-center shadow-lg"
+          className="lg:h-48 md:h-36 w-full object-cover object-center shadow-lg h-[10rem]"
           src={
             blogData?.image
               ? hostUrl + blogData.image.data.attributes.url
