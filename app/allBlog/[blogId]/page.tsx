@@ -15,6 +15,7 @@ export default function BlogType({ params }: any) {
 
   blogType = params["blogId"];
   const { fieldNames }: any = useGlobalContext();
+  const [q, setQ] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -32,7 +33,7 @@ export default function BlogType({ params }: any) {
     <>
       <Layout>
         <section>
-          <h1>{fieldNames[blogType] || "blogs"}</h1>
+          <h1>{fieldNames[blogType] || ""}</h1>
           <section className="grid grid-auto-fit-xs md:grid-cols-3 gap-4 mt-4 ">
             {blogData?.length > 0
               ? blogData.map((item: any) => (
