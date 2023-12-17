@@ -44,8 +44,8 @@ function Home() {
     return await service.getRequest(AppConfig.routes.announcements);
   };
 
-  const fetchSliders = async () => {
-    return await service.getRequest(AppConfig.routes.sliders);
+  const featuredBlogs = async () => {
+    return await service.getRequest(AppConfig.routes.blog.featuredBlog);
   };
 
   const fetchProfVideoLink = async () => {
@@ -55,7 +55,6 @@ function Home() {
   useEffect(() => {
     (async () => {
       const result = await fetchBlogData();
-      setBlogs(result?.data.data);
 
       const featuredVideos = await fetchFeaturedVideo();
       setFeaturedVideo(featuredVideos?.data.data);
@@ -66,9 +65,9 @@ function Home() {
       const announcementsData = await fetchAnnouncements();
       setAnnouncements(announcementsData?.data.data);
 
-      const sliderData = await fetchSliders();
-      setSlider(result?.data.data);
-      console.log(result);
+      const sliderData = await featuredBlogs();
+      setSlider(sliderData?.data.data);
+      setBlogs(sliderData?.data.data);
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
@@ -137,7 +136,7 @@ function Home() {
           </Link>{" "}
         </div>
 
-        <section className="grid grid-auto-fit-xs gap-4 mt-4">
+        <section className="grid md:grid-cols-3 grid-auto-fit-xs gap-4 mt-4">
           {blogs?.length > 0
             ? blogs
                 .slice(0, 3)
