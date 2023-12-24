@@ -5,7 +5,7 @@ import { AppConfig } from "@config/config";
 import { Layout } from "@/components/layout.component";
 import { Card } from "@/components/card.component";
 import RequestServices from "@services/apis_service";
-import { FaCross, FaEraser, FaSearch } from "react-icons/fa";
+import { FaEraser, FaSearch } from "react-icons/fa";
 
 export default function BlogType({ params }: any) {
   let blogType: any;
@@ -43,7 +43,7 @@ export default function BlogType({ params }: any) {
   }, []);
   const fetchData = async () => {
     return await service.getRequest(
-      `${AppConfig.routes?.[blogType]?.allBlogs}&pagination[page]=1&pagination[pageSize]=100`
+      `${AppConfig.routes?.[blogType]?.allBlogs}&pagination[page]=1&pagination[pageSize]=100&sort=updatedAt:DESC`
     );
   };
   return (

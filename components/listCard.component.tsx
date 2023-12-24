@@ -6,7 +6,7 @@ const ListCard = ({ data }: any) => {
   const fallBackUrl = "https://img.icons8.com/ios-filled/50/external-link.png";
 
   return (
-    <div className="card shadow-lg bg-zinc-100  rounded-md hover:shadow-lg gap-12  flex items-center py-8 px-8 w-full  h-[18rem] justify-center">
+    <div className="card shadow-[inset_10px_10px_10px_#46464620] bg-zinc-100  rounded-md hover:shadow-lg gap-12  flex items-center py-8 px-8 w-full  h-[18rem] justify-center">
       <img
         width="50"
         height="50"
