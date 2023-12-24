@@ -24,7 +24,7 @@ function Home() {
   const router = useRouter();
 
   const [blogs, setBlogs] = useState([]);
-  const [featuredVideo, setFeaturedVideo] = useState([]);
+  // const [featuredVideo, setFeaturedVideo] = useState([]);
   const [pressRelease, setPressRelease] = useState([]);
   const [announcements, setAnnouncements] = useState<any>();
   const [sliders, setSlider] = useState<any>([]);
@@ -55,9 +55,10 @@ function Home() {
   useEffect(() => {
     (async () => {
       const result = await fetchBlogData();
+      setBlogs(result?.data.data);
 
-      const featuredVideos = await fetchFeaturedVideo();
-      setFeaturedVideo(featuredVideos?.data.data);
+      // const featuredVideos = await fetchFeaturedVideo();
+      // setFeaturedVideo(featuredVideos?.data.data);
 
       const pressReleaseData = await fetchPressRelease();
       setPressRelease(pressReleaseData?.data.data);
@@ -67,7 +68,6 @@ function Home() {
 
       const sliderData = await featuredBlogs();
       setSlider(sliderData?.data.data);
-      setBlogs(sliderData?.data.data);
 
       const profVideoLink = await fetchProfVideoLink();
       setProfVideo(profVideoLink?.data?.data?.attributes);
@@ -148,7 +148,6 @@ function Home() {
                     blogType={item.attributes?.blogType}
                   />
                 ))
-                .reverse()
             : [1, 2, 3].map((i) => (
                 <div className="animate h-[20rem]" key={i}></div>
               ))}
