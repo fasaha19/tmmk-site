@@ -19,15 +19,15 @@ const FeaturedBlog = ({ title, viewAllTxt, navLink }: any) => {
       }
     };
     //cleanup fucntion to avaoid re-fetch
-    return () => {
-      getData();
-    };
+    // return () => {
+    getData();
+    // };
   }, []);
 
   const fetchBlogData = async () =>
     await service.getRequest(AppConfig.routes[navLink].top4blog);
   return (
-    <div className=" px-4 py-8 bg-gray-50 mt-12 rounded-md shadow-lg">
+    <div className=" px-4 py-8 nm-flat-red-500 mt-12 rounded-md shadow-lg">
       <div className="flex items-end justify-between flex-wrap">
         <h1>{title}</h1>
         <Link href={`allBlog/${navLink}`}>
