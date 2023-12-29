@@ -63,3 +63,11 @@ iframe {
   cursor: pointer;
 }
 
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 60%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

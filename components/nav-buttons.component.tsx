@@ -10,6 +10,7 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
     (async () => {
       const result = await fetchData();
       setButtons(result?.data?.data);
+      console.log(buttons);
     })();
   }, []);
   const fetchData = async () => {
@@ -21,9 +22,14 @@ const NavButtons = ({ name = "click here", data, className = "" }: any) => {
         <span className="md:mx-[2rem] md:my-[1rem] mx-1 " key={item?.id}>
           <Link
             target={"_blank"}
-            href={"https://www.tmmk.info/donation/"}
-            style={{ background: item?.attributes?.color }}
-            className={`text-1xl   text-white stroke-black  animation-pulse font-bold py-2 px-4 rounded`}
+            href={item?.attributes?.url ?? ""}
+            style={{
+              background: `linear-gradient(146deg, ${item?.attributes?.color} 55%, #ffffff 60%, ${item?.attributes?.color} 65%)`,
+              backgroundSize: `400% 200%`,
+              animation: `AnimationName 4s ease-in infinite`,
+            }}
+            className={`text-1xl   text-white stroke-black  bg-gradient-to-r
+             font-bold py-2 px-4 rounded`}
           >
             <button>
               {item?.attributes?.icon ? (
