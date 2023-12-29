@@ -71,9 +71,10 @@ function Home() {
         console.error("Error fetching data:", error);
       }
     };
-    return () => {
-      fetchHomePageData();
-    };
+    fetchHomePageData();
+    // return () => {
+    //   fetchHomePageData();
+    // };
   }, []);
 
   return (
