@@ -31,6 +31,40 @@ const AppConfig: any = {
       top4blog:
         "blogs?populate=*&filters[$and][0][blogType][$eq]=services&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:ASC",
     },
+    news: {
+      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=news",
+      featuredBlog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=news&filters[$and][1][isFeatured][$eq]=true&pagination[page]=1&pagination[pageSize]=5&sort=updatedAt:DESC",
+      blogById: "blogs/",
+      top4blog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=news&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:DESC",
+    },
+    hqAnnouncement: {
+      allBlogs:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=hqAnnouncement",
+      featuredBlog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=hqAnnouncement&filters[$and][1][isFeatured][$eq]=true&pagination[page]=1&pagination[pageSize]=5&sort=updatedAt:DESC",
+      blogById: "blogs/",
+      top4blog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=hqAnnouncement&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:DESC",
+    },
+    makkalUrimai: {
+      allBlogs: "blogs?populate=*&filters[$and][0][blogType][$eq]=makkalUrimai",
+      featuredBlog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=makkalUrimai&filters[$and][1][isFeatured][$eq]=true&pagination[page]=1&pagination[pageSize]=5&sort=updatedAt:DESC",
+      blogById: "blogs/",
+      top4blog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=makkalUrimai&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:DESC",
+    },
+    arasiyalKalam: {
+      allBlogs:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=arasiyalKalam",
+      featuredBlog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=arasiyalKalam&filters[$and][1][isFeatured][$eq]=true&pagination[page]=1&pagination[pageSize]=5&sort=updatedAt:DESC",
+      blogById: "blogs/",
+      top4blog:
+        "blogs?populate=*&filters[$and][0][blogType][$eq]=arasiyalKalam&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:DESC",
+    },
     socialMediaLink: "social-medial-link?populate=*",
     headersImage: "header-banner-image?populate=*",
     announcements: "home-announcements",

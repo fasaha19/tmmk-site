@@ -20,7 +20,9 @@ export const GlobalContextProvider = ({ children }: any) => {
       const response: any = await service.getRequest(AppConfig.fieldName);
       setFieldNames(response.data.data[0]["attributes"]["home"]);
     };
-    appendData();
+    return () => {
+      appendData();
+    };
   }, []);
 
   return (

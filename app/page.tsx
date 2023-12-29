@@ -19,26 +19,28 @@ import "swiper/css/scrollbar";
 import { AppConfig } from "@config/config";
 import RequestServices from "@services/apis_service";
 import { useRouter } from "next/navigation";
+import FeaturedBlog from "@components/featured-blog.component";
 
 function Home() {
   const router = useRouter();
-
-  const [blogs, setBlogs] = useState([]);
   // const [featuredVideo, setFeaturedVideo] = useState([]);
-  const [pressRelease, setPressRelease] = useState([]);
   const [announcements, setAnnouncements] = useState<any>();
   const [sliders, setSlider] = useState<any>([]);
   const [profVideo, setProfVideo] = useState<any>("");
   const service = new RequestServices();
   const { fieldNames }: any = useGlobalContext();
-  const fetchBlogData = async () => {
-    return await service.getRequest(AppConfig.routes.blog.top4blog);
-  };
+
+  const blogTypes = [
+    { id: 1, key: "blog" },
+    { id: 2, key: "pressRelease" },
+    { id: 3, key: "news" },
+    { id: 4, key: "makkalUrimai" },
+    { id: 5, key: "arasiyalKalam" },
+    { id: 6, key: "hqAnnouncement" },
+  ];
+
   const fetchFeaturedVideo = async () => {
     return await service.getRequest(AppConfig.routes.featuredVideo);
-  };
-  const fetchPressRelease = async () => {
-    return await service.getRequest(AppConfig.routes.pressRelease.allBlogs);
   };
   const fetchAnnouncements = async () => {
     return await service.getRequest(AppConfig.routes.announcements);
@@ -53,31 +55,31 @@ function Home() {
   };
 
   useEffect(() => {
-    (async () => {
-      const result = await fetchBlogData();
-      setBlogs(result?.data.data);
+    const fetchHomePageData = async () => {
+      try {
+        // const featuredVideos = await fetchFeaturedVideo();
+        // setFeaturedVideo(featuredVideos?.data.data);
+        const response = await fetchAnnouncements();
+        setAnnouncements(response?.data.data);
 
-      // const featuredVideos = await fetchFeaturedVideo();
-      // setFeaturedVideo(featuredVideos?.data.data);
+        const sliderData = await featuredBlogs();
+        setSlider(sliderData?.data.data);
 
-      const pressReleaseData = await fetchPressRelease();
-      setPressRelease(pressReleaseData?.data.data);
-
-      const announcementsData = await fetchAnnouncements();
-      setAnnouncements(announcementsData?.data.data);
-
-      const sliderData = await featuredBlogs();
-      setSlider(sliderData?.data.data);
-
-      const profVideoLink = await fetchProfVideoLink();
-      setProfVideo(profVideoLink?.data?.data?.attributes);
-    })();
+        const profVideoLink = await fetchProfVideoLink();
+        setProfVideo(profVideoLink?.data?.data?.attributes);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    return () => {
+      fetchHomePageData();
+    };
   }, []);
 
   return (
     <>
       <Layout>
-        <section className="grid grid-auto-fit-xs gap-4 mt-4 md:h-[22rem]">
+        <section className="grid grid-auto-fit-xs gap-4 md:h-[22rem]">
           <div className="w-full  bg-zinc-100">
             <Swiper
               spaceBetween={30}
@@ -128,30 +130,46 @@ function Home() {
         </section>
 
         {/* blogs */}
-        <div className="flex  mt-16 items-end justify-between flex-wrap">
-          <h1>{fieldNames?.["Featured blogs"]}</h1>
-          <Link href={`allBlog/blog`}>
-            <Button name={fieldNames?.["View all"]} />
-            {/* <h6 className="viewall-btn">{fieldNames?.["View all"]}</h6> */}
-          </Link>{" "}
-        </div>
+        <FeaturedBlog
+          title={fieldNames?.["Featured blogs"]}
+          viewAllTxt={fieldNames?.["View all"]}
+          navLink="blog"
+        />
 
-        <section className="grid md:grid-cols-3 grid-auto-fit-xs gap-4 mt-4">
-          {blogs?.length > 0
-            ? blogs
-                .slice(0, 3)
-                .map((item: any) => (
-                  <Card
-                    blogData={item.attributes}
-                    blogId={item.id}
-                    key={item.id}
-                    blogType={item.attributes?.blogType}
-                  />
-                ))
-            : [1, 2, 3].map((i) => (
-                <div className="animate h-[20rem]" key={i}></div>
-              ))}
-        </section>
+        {/* Press Release */}
+        <FeaturedBlog
+          title={fieldNames?.["pressRelease"]}
+          viewAllTxt={fieldNames?.["View all"]}
+          navLink="pressRelease"
+        />
+
+        {/* News */}
+        <FeaturedBlog
+          title={fieldNames?.["news"]}
+          viewAllTxt={fieldNames?.["View all"]}
+          navLink="news"
+        />
+
+        {/* Makkal Urimai */}
+        <FeaturedBlog
+          title={fieldNames?.["makkalUrimai"]}
+          viewAllTxt={fieldNames?.["View all"]}
+          navLink="makkalUrimai"
+        />
+
+        {/* Arasial Kalam */}
+        <FeaturedBlog
+          title={fieldNames?.["arasiyalKalam"]}
+          viewAllTxt={fieldNames?.["View all"]}
+          navLink="arasiyalKalam"
+        />
+
+        {/* HQ Announcements */}
+        <FeaturedBlog
+          title={fieldNames?.["hqAnnouncement"]}
+          viewAllTxt={fieldNames?.["View all"]}
+          navLink="hqAnnouncement"
+        />
 
         {/* video */}
         {/* <section className="mt-16">
@@ -171,9 +189,8 @@ function Home() {
                 ))}
           </div>
         </section> */}
-
-        {/* press release */}
-        <section className="mt-16">
+        {/* Announcement*/}
+        {/* <section className="mt-16">
           <div className="grid grid-auto-fit gap-8">
             <div className="flex flex-col">
               <div className="flex items-end justify-between flex-wrap">
@@ -213,7 +230,7 @@ function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </Layout>
     </>
   );

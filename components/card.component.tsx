@@ -13,7 +13,7 @@ export const Card = (props: any) => {
   return (
     <Link href={`/blog/${id}`}>
       <div
-        className={` border-2 shadow-xl rounded-lg overflow-hidden ${id} h-[30rem] relative hover:scale-105 transition-all duration-100 ease-out `}
+        className={`  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 shadow-md  overflow-hidden ${id} h-[30rem] relative hover:scale-105 transition-all duration-100 ease-out `}
       >
         <Image
           width={100}
@@ -35,7 +35,7 @@ export const Card = (props: any) => {
           </div>
         </div>
         <div className="p-6">
-          <p className="leading-relaxed mb-3 line-clamp-2">{blogData?.body}</p>
+          <p className="leading-relaxed mb-3 line-clamp-4">{blogData?.body}</p>
         </div>
 
         <svg
@@ -62,7 +62,7 @@ export const Card = (props: any) => {
           />
         </svg>
 
-        <div className="absolute bottom-0 right-0 p-4  w-full">
+        <div className="absolute bottom-0 right-0 p-4  w-full ">
           <div className="flex items-center justify-between ">
             <span className="text-gray-500 font-bold">
               {new Date(blogData?.["publishedAt"]).toLocaleDateString()}
