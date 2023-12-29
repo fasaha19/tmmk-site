@@ -86,7 +86,7 @@ export const Header = () => {
         <img
           src={`${AppConfig.host + headerImg}`}
           alt=""
-          className="h-[4rem] w-full  object-contain"
+          className="h-[4rem] w-full "
         />
       </nav>
 
