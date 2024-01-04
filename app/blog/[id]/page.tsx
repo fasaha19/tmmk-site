@@ -48,7 +48,7 @@ export default function BlogDetails({ params }: any) {
     );
   };
   const fetchFeaturedItems = async () => {
-    return await service.getRequest(`${AppConfig.routes.blog.featuredBlog}`);
+    return await service.getRequest(`${AppConfig.routes.featuredBlogs}`);
   };
   return (
     <>
