@@ -30,24 +30,12 @@ function Home() {
   const service = new RequestServices();
   const { fieldNames }: any = useGlobalContext();
 
-  const blogTypes = [
-    { id: 1, key: "blog" },
-    { id: 2, key: "pressRelease" },
-    { id: 3, key: "news" },
-    { id: 4, key: "makkalUrimai" },
-    { id: 5, key: "arasiyalKalam" },
-    { id: 6, key: "hqAnnouncement" },
-  ];
-
-  const fetchFeaturedVideo = async () => {
-    return await service.getRequest(AppConfig.routes.featuredVideo);
-  };
   const fetchAnnouncements = async () => {
     return await service.getRequest(AppConfig.routes.announcements);
   };
 
   const featuredBlogs = async () => {
-    return await service.getRequest(AppConfig.routes.blog.featuredBlog);
+    return await service.getRequest(AppConfig.routes.featuredBlogs);
   };
 
   const fetchProfVideoLink = async () => {
