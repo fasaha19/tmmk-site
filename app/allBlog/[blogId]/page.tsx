@@ -77,9 +77,15 @@ export default function BlogType({ params }: any) {
     console.log(blogData.length);
   };
   const fetchData = async () => {
-    return await service.getRequest(
-      `${AppConfig.routes?.[blogType]?.allBlogs}&pagination[page]=${page}&pagination[pageSize]=3&sort=updatedAt:DESC`
-    );
+    if (blogType == "blog") {
+      return await service.getRequest(
+        `blogs?populate=*&pagination[page]=${page}&pagination[pageSize]=3&sort=updatedAt:DESC`
+      );
+    } else {
+      return await service.getRequest(
+        `${AppConfig.routes?.[blogType]?.allBlogs}&pagination[page]=${page}&pagination[pageSize]=3&sort=updatedAt:DESC`
+      );
+    }
   };
   return (
     <>

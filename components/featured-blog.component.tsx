@@ -24,8 +24,13 @@ const FeaturedBlog = ({ title, viewAllTxt, navLink }: any) => {
     // };
   }, []);
 
-  const fetchBlogData = async () =>
-    await service.getRequest(AppConfig.routes[navLink].top4blog);
+  const fetchBlogData = async () => {
+    if (navLink == "blog") {
+      return await service.getRequest(AppConfig.routes.featuredBlogsTop4);
+    } else {
+      return await service.getRequest(AppConfig.routes[navLink].top4blog);
+    }
+  };
   return (
     <div className=" px-4 py-8 nm-flat-red-500 mt-12 rounded-md shadow-lg">
       <div className="flex items-end justify-between flex-wrap">

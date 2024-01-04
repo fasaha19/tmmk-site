@@ -3,6 +3,8 @@ const AppConfig: any = {
   baseURL: "https://cms.tmmk.info/api/",
   routes: {
     aboutUs: "aboutuses?populate=*",
+    featuredBlogsTop4:
+      "blogs?populate=*&filters[$and][0][isFeatured][$eq]=true&pagination[page]=1&pagination[pageSize]=4&sort=updatedAt:DESC",
     featuredBlogs:
       "blogs?populate=*&filters[$and][0][isFeatured][$eq]=true&pagination[page]=1&pagination[pageSize]=100&sort=updatedAt:DESC",
     blog: {
