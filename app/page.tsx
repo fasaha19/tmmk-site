@@ -111,7 +111,15 @@ function Home() {
           </div>
           <div className="w-full animate">
             {profVideo ? (
-              <iframe className="w-full h-full" src={profVideo.link}></iframe>
+              profVideo.image.data != null ? (
+                <img
+                  className="w-full md:h-[22rem] object-cover"
+                  src={AppConfig.host + profVideo.image?.data?.attributes.url}
+                  alt="tmmk-media"
+                />
+              ) : (
+                <iframe className="w-full h-full" src={profVideo.link}></iframe>
+              )
             ) : (
               <></>
             )}
