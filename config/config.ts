@@ -83,6 +83,7 @@ const AppConfig: any = {
     navButtons: "nav-buttons?populate=*",
     profVideo: "prof-video?populate=*",
     sliders: "sliders?populate=*",
+    ambulanceList: "ambulance-list?populate=*",
   },
   ssgFetchBlogUrl: "blogs?populate=*",
   siteUrl: "http://tmmk.info:3000",

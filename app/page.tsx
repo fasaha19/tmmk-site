@@ -1,13 +1,7 @@
 "use client";
 import { useGlobalContext } from "@context/context";
-
-import Button from "@/components/button.component";
-import { Card } from "@/components/card.component";
 import { Layout } from "@/components/layout.component";
-
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { EffectFade, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
