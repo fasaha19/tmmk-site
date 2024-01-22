@@ -11,16 +11,16 @@ const Profile = ({ profile }: any) => {
           className=" object-cover w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
         />
         <div className="w-1/2">
-          <h1 className="font-extrabold text-ellipsis overflow-hidden">
+          <span className="font-extrabold overflow-hidden line-clamp-3 text-md">
             {profile?.name}
-          </h1>
-          <h2 className="flex">
+          </span>
+          {/* <h2 className="flex">
             <FaPhone className="p-1 pl-0 " size={30} color="#707070" />{" "}
             {profile?.phoneNo}
-          </h2>
+          </h2> */}
           {profile?.role ? (
             <h2 className="flex items-center">
-              <FaUser className="p-1 pl-0" size={30} color="#707070" />
+              {/* <FaUser className="p-1 pl-0" size={30} color="#707070" /> */}
               {profile?.role}
             </h2>
           ) : null}
