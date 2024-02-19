@@ -4,6 +4,15 @@ import RequestServices from "@services/apis_service";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import {
+  FaEnvelope,
+  FaGlobe,
+  FaHashtag,
+  FaMapMarkedAlt,
+  FaMapPin,
+  FaPhoneAlt,
+} from "react-icons/fa";
+import { Timeline } from "react-twitter-widgets";
 
 export const Footer = () => {
   const [socialMediaLinks, setSocialMediaLinks] = useState<any>();
@@ -60,8 +69,8 @@ export const Footer = () => {
   };
   return (
     <>
-      <footer className="text-gray-600 body-font bg-black mt-12">
-        <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+      <footer className="text-gray-600 body-font bg-black mt-12 bg-gradient-to-br from-black to-[#212121]">
+        {/* <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
             <div className="lg:w-1/2 md:w-1/2 w-full px-4">
               <h2 className="title-font font-medium text-white tracking-widest text-sm mb-3">
@@ -82,32 +91,91 @@ export const Footer = () => {
               </nav>
             </div>
           </div>
-        </div>
-        <div className="bg-neutral-900">
-          <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col ">
-            <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
-              <Image
-                src="https://members.tmmk.info/assets/images/flag_tmmk.jpg"
-                height={25}
-                width={25}
-                alt=""
-              />
-              <span className="ml-3 text-xl">Tmmk</span>
-            </a>
-            <p className="text-sm text-white sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-              © TMMK —
-              <a
-                href="https://twitter.com/TmmkHq_official"
-                className="text-gray-400 ml-1"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                @TmmkHq_official
-              </a>
+        </div> */}
+        <div className="container px-5 py-5 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+          <div className="w-1/3 p-4">
+            <div className="flex text-white items-center gap-2">
+              <FaMapMarkedAlt />
+              <h2 className="text-xl font-semibold ">Map and Address</h2>
+            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.013316278943!2d80.28916497330592!3d13.098342512090467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526f44441b52e7%3A0xe507925e0de5fa77!2sTMMK%20MMK%20HEAD%20QUARTERS!5e0!3m2!1sen!2sin!4v1708364745074!5m2!1sen!2sin"
+              height="200"
+              className="py-4"
+              style={{ border: 0 }}
+              loading="lazy"
+            ></iframe>
+            <p className="mt-2 text-gray-400 flex items-start">
+              <span className="text-white mt-2 mr-2">
+                <FaMapPin />
+              </span>{" "}
+              <span>
+                தமிழ்நாடு முஸ்லிம் முன்னேற்றக் கழகம் தலைமையகம், 7, வடமரைக்காயர்
+                தெரு, வள்ளல்சீதக்காதி நகர், மண்ணடி, சென்னை 600001
+              </span>
             </p>
-            <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <p className="text-white mt-3">
+              <div className="flex items-center gap-2">
+                <FaPhoneAlt />
+                <span>
+                  Phone :{" "}
+                  <a href="tel:044-25247824 " target="_blank">
+                    044-25247824
+                  </a>
+                </span>
+              </div>
+            </p>
+            <p className="text-white">
+              <div className="flex items-center gap-2">
+                <FaEnvelope />
+                <span>
+                  E-mail :{" "}
+                  <a href="mailto:tmmkhq@gmail.com" target="_blank">
+                    tmmkhq@gmail.com
+                  </a>
+                </span>
+              </div>
+            </p>
+          </div>
+
+          <div className="w-1/3 p-4">
+            <div className="flex items-center text-white gap-2">
+              <FaGlobe />
+              <h2 className="text-xl font-semibold ">இணையதளங்கள்</h2>
+            </div>
+            <ul className="mt-2">
+              <li className="mb-1">
+                <a href="https://www.mmkinfo.com" className="text-blue-500">
+                  மனிதநேய மக்கள் கட்சி
+                </a>
+              </li>
+              <li className="mb-1">
+                <a
+                  href="https://www.makkalurimai.com"
+                  className="text-blue-500"
+                >
+                  மக்கள் உரிமை வார இதழ்
+                </a>
+              </li>
+              <li className="mb-1">
+                <a
+                  href="https://www.jawahirullah.com"
+                  className="text-blue-500"
+                >
+                  பேரா.ஜவாஹிருல்லா
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="w-1/3 p-4">
+            <div className="flex text-white items-center gap-2">
+              <FaHashtag />
+              <h2 className="text-xl font-semibold  ">Social Media</h2>
+            </div>
+            <span className="flex gap-8 sm:ml-auto mt-3 justify-center sm:justify-start">
               <Link
-                className="text-white"
+                className="text-blue-700 hover:scale-105"
                 target="_blank"
                 href={
                   socialMediaLinks?.facebook ? socialMediaLinks?.facebook : ""
@@ -125,7 +193,7 @@ export const Footer = () => {
                 </svg>
               </Link>
               <Link
-                className="ml-3 text-white"
+                className=" text-blue-400 hover:scale-105"
                 target="_blank"
                 href={
                   socialMediaLinks?.twitter ? socialMediaLinks?.twitter : ""
@@ -143,7 +211,7 @@ export const Footer = () => {
                 </svg>
               </Link>
               <Link
-                className="ml-3 text-white"
+                className=" bg-gradient-to-b from-[#7a1760] to-[#e3065e] text-white rounded-xl  hover:scale-105"
                 target="_blank"
                 href={
                   socialMediaLinks?.instagram ? socialMediaLinks?.instagram : ""
@@ -164,7 +232,7 @@ export const Footer = () => {
                 </svg>
               </Link>
               <Link
-                className="ml-3 text-white"
+                className=" text-red-600 hover:scale-105"
                 target="_blank"
                 href={
                   socialMediaLinks?.youtube ? socialMediaLinks?.youtube : ""
@@ -182,6 +250,42 @@ export const Footer = () => {
                 </svg>
               </Link>
             </span>
+            <div className="py-4">
+              <Timeline
+                dataSource={{
+                  sourceType: "tmmkhqofficial",
+                  screenName: "tmmkhqofficial",
+                }}
+                options={{
+                  height: "400",
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-neutral-900">
+          <div className="container px-5 py-4 mx-auto flex items-center sm:flex-row flex-col ">
+            <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
+              <Image
+                src="https://members.tmmk.info/assets/images/flag_tmmk.jpg"
+                height={25}
+                width={25}
+                alt=""
+              />
+              <span className="ml-3 text-xl">Tmmk</span>
+            </a>
+            <p className="text-sm text-white sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+              © TMMK —
+              <a
+                href="https://twitter.com/TmmkHq_official"
+                className="text-gray-400 ml-1"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                @TmmkHq_official
+              </a>
+            </p>
           </div>
         </div>
       </footer>
